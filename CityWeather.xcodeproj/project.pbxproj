@@ -11,7 +11,7 @@
 		8C6B1F19C3E4BB96773A3B02 /* Pods_CityWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19AB36852570A1FCB57DA13 /* Pods_CityWeather.framework */; };
 		FC9049BF2748AF5D00240C06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9049BE2748AF5D00240C06 /* AppDelegate.swift */; };
 		FC9049C12748AF5D00240C06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9049C02748AF5D00240C06 /* SceneDelegate.swift */; };
-		FC9049C32748AF5D00240C06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9049C22748AF5D00240C06 /* ViewController.swift */; };
+		FC9049C32748AF5D00240C06 /* ListWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9049C22748AF5D00240C06 /* ListWeatherViewController.swift */; };
 		FC9049C82748AF6000240C06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9049C72748AF6000240C06 /* Assets.xcassets */; };
 		FC9049CB2748AF6000240C06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC9049C92748AF6000240C06 /* LaunchScreen.storyboard */; };
 		FC9049F02748AF9800240C06 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FC9049EF2748AF9800240C06 /* SnapKit */; };
@@ -28,6 +28,10 @@
 		FCD681A42748C981007E9913 /* MoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681A22748C981007E9913 /* MoyaNetwork.swift */; };
 		FCD681A72748E5DB007E9913 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681A62748E5DB007E9913 /* ApiError.swift */; };
 		FCD681A82748E5DB007E9913 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681A62748E5DB007E9913 /* ApiError.swift */; };
+		FCD681AB2748EF30007E9913 /* ListWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681AA2748EF30007E9913 /* ListWeatherViewModel.swift */; };
+		FCD681AF2748EF54007E9913 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681AE2748EF54007E9913 /* BaseViewModel.swift */; };
+		FCD681B02748EF54007E9913 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681AE2748EF54007E9913 /* BaseViewModel.swift */; };
+		FCD681B32748F6D0007E9913 /* ListWeatherViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681B12748F6D0007E9913 /* ListWeatherViewModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +57,7 @@
 		FC9049BB2748AF5D00240C06 /* CityWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9049BE2748AF5D00240C06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC9049C02748AF5D00240C06 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FC9049C22748AF5D00240C06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FC9049C22748AF5D00240C06 /* ListWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWeatherViewController.swift; sourceTree = "<group>"; };
 		FC9049C72748AF6000240C06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC9049CA2748AF6000240C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC9049CC2748AF6000240C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,6 +72,9 @@
 		FCD6819F2748C336007E9913 /* TestResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResources.swift; sourceTree = "<group>"; };
 		FCD681A22748C981007E9913 /* MoyaNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaNetwork.swift; sourceTree = "<group>"; };
 		FCD681A62748E5DB007E9913 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		FCD681AA2748EF30007E9913 /* ListWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWeatherViewModel.swift; sourceTree = "<group>"; };
+		FCD681AE2748EF54007E9913 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		FCD681B12748F6D0007E9913 /* ListWeatherViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWeatherViewModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,11 +144,12 @@
 		FC9049BD2748AF5D00240C06 /* CityWeather */ = {
 			isa = PBXGroup;
 			children = (
+				FCD681AD2748EF45007E9913 /* Base */,
+				FCD681A92748EEF6007E9913 /* Modules */,
 				FCD681942748B8FE007E9913 /* Models */,
 				FCD6818F2748B534007E9913 /* ApiManagement */,
 				FC9049BE2748AF5D00240C06 /* AppDelegate.swift */,
 				FC9049C02748AF5D00240C06 /* SceneDelegate.swift */,
-				FC9049C22748AF5D00240C06 /* ViewController.swift */,
 				FC9049C72748AF6000240C06 /* Assets.xcassets */,
 				FC9049C92748AF6000240C06 /* LaunchScreen.storyboard */,
 				FC9049CC2748AF6000240C06 /* Info.plist */,
@@ -154,6 +162,7 @@
 			children = (
 				FCD6819B2748C2B0007E9913 /* MockData */,
 				FC9049D72748AF6100240C06 /* Info.plist */,
+				FCD681B12748F6D0007E9913 /* ListWeatherViewModelTest.swift */,
 				FCD681992748C25C007E9913 /* NetworkApiManagerTest.swift */,
 			);
 			path = CityWeatherTests;
@@ -186,6 +195,23 @@
 				FCD6819F2748C336007E9913 /* TestResources.swift */,
 			);
 			path = MockData;
+			sourceTree = "<group>";
+		};
+		FCD681A92748EEF6007E9913 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				FC9049C22748AF5D00240C06 /* ListWeatherViewController.swift */,
+				FCD681AA2748EF30007E9913 /* ListWeatherViewModel.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		FCD681AD2748EF45007E9913 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				FCD681AE2748EF54007E9913 /* BaseViewModel.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,10 +406,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC9049C32748AF5D00240C06 /* ViewController.swift in Sources */,
+				FC9049C32748AF5D00240C06 /* ListWeatherViewController.swift in Sources */,
 				FCD681A02748C336007E9913 /* TestResources.swift in Sources */,
+				FCD681AB2748EF30007E9913 /* ListWeatherViewModel.swift in Sources */,
 				FCD681912748B584007E9913 /* ApiManagement.swift in Sources */,
 				FCD681A72748E5DB007E9913 /* ApiError.swift in Sources */,
+				FCD681AF2748EF54007E9913 /* BaseViewModel.swift in Sources */,
 				FC9049BF2748AF5D00240C06 /* AppDelegate.swift in Sources */,
 				FCD681932748B5CE007E9913 /* WeatherNetworkApiManager.swift in Sources */,
 				FCD681982748B94B007E9913 /* WeatherNetworkModel.swift in Sources */,
@@ -400,7 +428,9 @@
 				FCD681A42748C981007E9913 /* MoyaNetwork.swift in Sources */,
 				FCD681A82748E5DB007E9913 /* ApiError.swift in Sources */,
 				FCD681A12748C336007E9913 /* TestResources.swift in Sources */,
+				FCD681B32748F6D0007E9913 /* ListWeatherViewModelTest.swift in Sources */,
 				FCD6819A2748C25C007E9913 /* NetworkApiManagerTest.swift in Sources */,
+				FCD681B02748EF54007E9913 /* BaseViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

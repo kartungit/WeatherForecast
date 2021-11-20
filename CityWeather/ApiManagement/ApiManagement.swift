@@ -9,6 +9,5 @@ import Foundation
 import RxSwift
 
 protocol ApiManagement {
-	associatedtype WeatherRaw
-	func getCityWeather<WeatherRaw:WeatherPresenterFactory & Decodable>(city: String) -> Single<WeatherRaw>
+	func getCityWeather(city: String) -> Single<WeatherNetworkModel>
 }
