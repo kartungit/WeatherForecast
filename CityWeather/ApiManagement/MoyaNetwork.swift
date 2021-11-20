@@ -30,7 +30,7 @@ class MoyaNetwork<T: TargetType> {
 		_ target: T,
 		dataReturnType: ReturnedObject.Type
 	) -> Single<ReturnedObject> {
-		return provider.rx.request(target).debug("THINH DEBUGGGG")
+		return provider.rx.request(target)
 			.filterSuccesfullStatusCode()
 			.map(ReturnedObject.self, using: decoder)
 			.observeOn(MainScheduler.instance)

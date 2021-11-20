@@ -43,13 +43,16 @@ class ListWeatherViewModelTest: XCTestCase {
 		
 		let toastTextTest = scheduler.createObserver(String.self)
 		output.toastText.drive(toastTextTest).disposed(by: disposeBag)
-		
+		let listDayWeather = scheduler.createObserver([DayWeatherModel].self)
+		output.dayWeatherList.drive(listDayWeather).disposed(by: disposeBag)
+
 		scheduler.createColdObservable([.next(10, "abc")])
 			.bind(to: searchTest$)
 			.disposed(by: disposeBag)
 		
 		scheduler.start()
 		XCTAssertEqual(toastTextTest.events, [.next(10, "Ho Chi Minh City, VN")])
+		XCTAssertEqual(listDayWeather.events.count, 1)
 	}
 	
 	func test_viewModelInit_withNetworkManager_searchTwice_receiveTwice() {
