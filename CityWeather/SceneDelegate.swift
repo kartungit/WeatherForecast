@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -22,8 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		window?.windowScene = windowScene
 		window?.rootViewController = ViewController()
 		
-		let networkApi = NetworkApiManager()
-		networkApi.getCityWeather(city: "saigon").subscribe()
 		
 		window?.makeKeyAndVisible()
 	}
