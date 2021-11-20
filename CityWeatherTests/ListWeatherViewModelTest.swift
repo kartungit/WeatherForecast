@@ -16,11 +16,11 @@ import Moya
 class ListWeatherViewModelTest: XCTestCase {
 	var scheduler: TestScheduler!
 	var sut: ListWeatherViewModel!
-
+	
 	var input: ListWeatherViewModel.Input!
 	var output: ListWeatherViewModel.Output!
 	private var disposeBag: DisposeBag!
-
+	
 	let searchTest$ = PublishSubject<String>()
 	
 	
@@ -29,7 +29,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		
 		let toastTextTest = scheduler.createObserver(String.self)
 		output.toastText.drive(toastTextTest).disposed(by: disposeBag)
-
+		
 		scheduler.createColdObservable([.next(10, "a")])
 			.bind(to: searchTest$)
 			.disposed(by: disposeBag)
@@ -43,7 +43,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		
 		let toastTextTest = scheduler.createObserver(String.self)
 		output.toastText.drive(toastTextTest).disposed(by: disposeBag)
-
+		
 		scheduler.createColdObservable([.next(10, "abc")])
 			.bind(to: searchTest$)
 			.disposed(by: disposeBag)
@@ -57,7 +57,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		
 		let toastTextTest = scheduler.createObserver(String.self)
 		output.toastText.drive(toastTextTest).disposed(by: disposeBag)
-
+		
 		scheduler.createColdObservable([.next(10, "abc"),
 										.next(20, "abc")])
 			.bind(to: searchTest$)
@@ -76,22 +76,25 @@ class ListWeatherViewModelTest: XCTestCase {
 		output.error.drive(errorTest).disposed(by: disposeBag)
 		let toastTextTest = scheduler.createObserver(String.self)
 		output.toastText.drive(toastTextTest).disposed(by: disposeBag)
-
-		scheduler.createColdObservable([.next(10, "abcgg"),
-										.next(20, "tttta")])
+		
+		scheduler.createColdObservable([.next(10, "abc"),
+										.next(20, "a"),
+										.next(30, "abc")])
 			.bind(to: searchTest$)
 			.disposed(by: disposeBag)
 		
 		scheduler.start()
-		XCTAssertEqual(errorTest.events, [.next(10, APIError.notFound)])
-		XCTAssertEqual(toastTextTest.events, [.next(10, ListWeatherViewModel.LOCATION_NOT_VALID)])
+		XCTAssertEqual(errorTest.events, [.next(10, APIError.notFound),
+										  .next(30, APIError.notFound)])
+		XCTAssertEqual(toastTextTest.events, [.next(10, ListWeatherViewModel.LOCATION_NOT_VALID),
+											  .next(30, ListWeatherViewModel.LOCATION_NOT_VALID)])
 	}
 	
 	private func makeSUT(stubNetwork: ApiManagement = WeatherNetworkApiManager<WeatherNetworkModel>(isMock: true)) {
 		let stubNetwork = stubNetwork
 		scheduler = TestScheduler(initialClock: 0)
 		disposeBag = DisposeBag()
-
+		
 		sut = ListWeatherViewModel(dataManager: stubNetwork)
 		input = ListWeatherViewModel.Input(searchText: searchTest$.asObservable())
 		output = sut.transform(input)
@@ -108,7 +111,7 @@ class StubWeatherErrorNetwork: WeatherNetworkApiManager<WeatherNetworkModel> {
 							task: target.task,
 							httpHeaderFields: target.headers)
 		}
-
+		
 		self.provider = MoyaProvider<WeatherService>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
 		
 		return super.getCityWeather(city: city)
