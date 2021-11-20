@@ -25,9 +25,7 @@
 		FCD681A02748C336007E9913 /* TestResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6819F2748C336007E9913 /* TestResources.swift */; };
 		FCD681A12748C336007E9913 /* TestResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6819F2748C336007E9913 /* TestResources.swift */; };
 		FCD681A32748C981007E9913 /* MoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681A22748C981007E9913 /* MoyaNetwork.swift */; };
-		FCD681A42748C981007E9913 /* MoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681A22748C981007E9913 /* MoyaNetwork.swift */; };
 		FCD681A72748E5DB007E9913 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681A62748E5DB007E9913 /* ApiError.swift */; };
-		FCD681A82748E5DB007E9913 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681A62748E5DB007E9913 /* ApiError.swift */; };
 		FCD681AB2748EF30007E9913 /* ListWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681AA2748EF30007E9913 /* ListWeatherViewModel.swift */; };
 		FCD681AF2748EF54007E9913 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681AE2748EF54007E9913 /* BaseViewModel.swift */; };
 		FCD681B02748EF54007E9913 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681AE2748EF54007E9913 /* BaseViewModel.swift */; };
@@ -425,8 +423,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCD681A42748C981007E9913 /* MoyaNetwork.swift in Sources */,
-				FCD681A82748E5DB007E9913 /* ApiError.swift in Sources */,
 				FCD681A12748C336007E9913 /* TestResources.swift in Sources */,
 				FCD681B32748F6D0007E9913 /* ListWeatherViewModelTest.swift in Sources */,
 				FCD6819A2748C25C007E9913 /* NetworkApiManagerTest.swift in Sources */,

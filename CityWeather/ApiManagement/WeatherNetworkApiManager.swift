@@ -43,7 +43,6 @@ class WeatherNetworkApiManager<T: WeatherPresenterFactory & Decodable>: MoyaNetw
 	
 	func getCityWeather<T>(city: String) -> Single<T> where T : WeatherPresenterFactory, T : Decodable {
 		
-		return provider.rx.request(WeatherService(city: city))
-			.map(T.self, using: decoder)
+		return callApi(WeatherService(city: city), dataReturnType: T.self)
 	}
 }
