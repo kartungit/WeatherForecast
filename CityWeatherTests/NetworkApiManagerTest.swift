@@ -42,14 +42,27 @@ class NetworkApiManagerTest: XCTestCase {
 		XCTAssertEqual(expectedError,
 					   thrownError as? APIError)
 	}
+	
+	func testMockNetwork_networkError_emmitNetworkError() {
+		let sut = StubMoyaNetwork(isMock: true)
+		var thrownError: Error?
+
+		let weather = sut.requestWithErrorNetwork()
+		let block = weather.toBlocking()
+
+		let expectedError = APIError.unknown
+
+		
+		XCTAssertThrowsError(try block.first()) {
+			thrownError = $0
+				}
+		XCTAssertEqual(expectedError,
+					   thrownError as? APIError)
+	}
 }
 
 
 class StubMoyaNetwork: MoyaNetwork<stubService> {
-	
-	func successRequest() -> Single<String> {
-		callApi(.success, dataReturnType: String.self)
-	}
 	
 	func requestWithErrorResponse(error: APIError) -> Single<Data> {
 		let customEndpointClosure = { (target: stubService) -> Endpoint in
@@ -63,6 +76,20 @@ class StubMoyaNetwork: MoyaNetwork<stubService> {
 		self.provider = MoyaProvider<stubService>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
 		
 		return callApi(.failed(error), dataReturnType: Data.self)
+	}
+	
+	func requestWithErrorNetwork() -> Single<Data> {
+		let customEndpointClosure = { (target: stubService) -> Endpoint in
+			return Endpoint(url: URL(target: target).absoluteString,
+							sampleResponseClosure: { .networkError(APIError.unknown as NSError) },
+							method: target.method,
+							task: target.task,
+							httpHeaderFields: target.headers)
+		}
+
+		self.provider = MoyaProvider<stubService>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
+		
+		return callApi(.success, dataReturnType: Data.self)
 	}
 }
 

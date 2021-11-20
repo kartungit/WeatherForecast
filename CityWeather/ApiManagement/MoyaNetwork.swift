@@ -56,7 +56,8 @@ class MoyaNetwork<T: TargetType> {
 
 extension PrimitiveSequence where Trait == SingleTrait, Element: Moya.Response {
 	func filterSuccesfullStatusCode() -> Single<Element> {
-		return self.flatMap({ response in
+		return self.catchError{ _ in return .error(APIError.unknown)}
+			.flatMap({ response in
 			let validator = ApiErrorManagement()
 			let reponseStatus = validator.checkResponse(response)
 			switch reponseStatus {
