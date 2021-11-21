@@ -50,12 +50,13 @@ class NetworkWeatherPresenterFactory: WeatherPresenterFactory {
 		let pressure = "Pressure: \(String(describing: list.pressure ?? 0))"
 		let humidity = "Humidity: \(String(describing: list.humidity ?? 0))%"
 		let description = "Description: \(String(describing: list.weather?.first?.weatherDescription ?? ""))"
+		let imgUrl = "\(BASE_IMG_SOURCE)\(list.weather?.first?.icon ?? "")@2x.png"
 		return DayWeatherModel(date: date,
 							   aveTemp: aveTempText,
 							   pressure: pressure,
 							   humidity: humidity,
 							   description: description,
-							   imgUrl: "a")
+							   imgUrl: imgUrl)
 	}
 	
 	private func getDateFromTimeStamp(timeStamp : Int?) -> String {

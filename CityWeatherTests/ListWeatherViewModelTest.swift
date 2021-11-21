@@ -38,7 +38,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		XCTAssertEqual(toastTextTest.events, [.next(0, "Welcome, type to start")])
 	}
 	
-	func test_viewModelInit_withNetworkManager() {
+	func test_viewModelInit_searchTwice_withInputNotChange_fetchOnce() {
 		makeSUT()
 		
 		let toastTextTest = scheduler.createObserver(String.self)
@@ -46,7 +46,8 @@ class ListWeatherViewModelTest: XCTestCase {
 		let listDayWeather = scheduler.createObserver([DayWeatherModel].self)
 		output.dayWeatherList.drive(listDayWeather).disposed(by: disposeBag)
 
-		scheduler.createColdObservable([.next(10, "abc")])
+		scheduler.createColdObservable([.next(10, "abc"),
+										.next(20, "abc")])
 			.bind(to: searchTest$)
 			.disposed(by: disposeBag)
 		
@@ -63,7 +64,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		output.cityCountryText.drive(toastTextTest).disposed(by: disposeBag)
 		
 		scheduler.createColdObservable([.next(10, "abc"),
-										.next(20, "abc")])
+										.next(20, "abcd")])
 			.bind(to: searchTest$)
 			.disposed(by: disposeBag)
 		
@@ -84,7 +85,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		
 		scheduler.createColdObservable([.next(10, "abc"),
 										.next(20, "a"),
-										.next(30, "abc")])
+										.next(30, "abcd")])
 			.bind(to: searchTest$)
 			.disposed(by: disposeBag)
 		

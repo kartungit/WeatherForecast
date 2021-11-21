@@ -34,7 +34,9 @@
 		FCD681BC2749F1F1007E9913 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681BA2749F1F1007E9913 /* ToastView.swift */; };
 		FCD681C2274A0D8B007E9913 /* NetworkWeatherPresenterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681C0274A0D8B007E9913 /* NetworkWeatherPresenterFactory.swift */; };
 		FCD681C5274A3203007E9913 /* DayWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681C4274A3203007E9913 /* DayWeatherCell.swift */; };
-		FCD681C6274A3203007E9913 /* DayWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681C4274A3203007E9913 /* DayWeatherCell.swift */; };
+		FCD681C9274A9AE7007E9913 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FCD681C8274A9AE7007E9913 /* Kingfisher */; };
+		FCD681CB274A9EFE007E9913 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681CA274A9EFE007E9913 /* Constant.swift */; };
+		FCD681CC274A9EFE007E9913 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681CA274A9EFE007E9913 /* Constant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,7 @@
 		FCD681BA2749F1F1007E9913 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		FCD681C0274A0D8B007E9913 /* NetworkWeatherPresenterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWeatherPresenterFactory.swift; sourceTree = "<group>"; };
 		FCD681C4274A3203007E9913 /* DayWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeatherCell.swift; sourceTree = "<group>"; };
+		FCD681CA274A9EFE007E9913 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCD681C9274A9AE7007E9913 /* Kingfisher in Frameworks */,
 				FC9049F02748AF9800240C06 /* SnapKit in Frameworks */,
 				8C6B1F19C3E4BB96773A3B02 /* Pods_CityWeather.framework in Frameworks */,
 			);
@@ -219,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				FCD681AE2748EF54007E9913 /* BaseViewModel.swift */,
+				FCD681CA274A9EFE007E9913 /* Constant.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 			name = CityWeather;
 			packageProductDependencies = (
 				FC9049EF2748AF9800240C06 /* SnapKit */,
+				FCD681C8274A9AE7007E9913 /* Kingfisher */,
 			);
 			productName = CityWeather;
 			productReference = FC9049BB2748AF5D00240C06 /* CityWeather.app */;
@@ -313,6 +319,7 @@
 			mainGroup = FC9049B22748AF5D00240C06;
 			packageReferences = (
 				FC9049EE2748AF9800240C06 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FCD681C7274A9AE7007E9913 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = FC9049BC2748AF5D00240C06 /* Products */;
 			projectDirPath = "";
@@ -433,6 +440,7 @@
 			files = (
 				FC9049C32748AF5D00240C06 /* ListWeatherViewController.swift in Sources */,
 				FCD681A02748C336007E9913 /* TestResources.swift in Sources */,
+				FCD681CB274A9EFE007E9913 /* Constant.swift in Sources */,
 				FCD681C5274A3203007E9913 /* DayWeatherCell.swift in Sources */,
 				FCD681AB2748EF30007E9913 /* ListWeatherViewModel.swift in Sources */,
 				FCD681912748B584007E9913 /* ApiManagement.swift in Sources */,
@@ -452,12 +460,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCD681CC274A9EFE007E9913 /* Constant.swift in Sources */,
 				FCD681BC2749F1F1007E9913 /* ToastView.swift in Sources */,
 				FCD681A12748C336007E9913 /* TestResources.swift in Sources */,
 				FCD681C2274A0D8B007E9913 /* NetworkWeatherPresenterFactory.swift in Sources */,
 				FCD681B32748F6D0007E9913 /* ListWeatherViewModelTest.swift in Sources */,
 				FCD6819A2748C25C007E9913 /* NetworkApiManagerTest.swift in Sources */,
-				FCD681C6274A3203007E9913 /* DayWeatherCell.swift in Sources */,
 				FCD681B02748EF54007E9913 /* BaseViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -727,6 +735,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		FCD681C7274A9AE7007E9913 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -734,6 +750,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FC9049EE2748AF9800240C06 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		FCD681C8274A9AE7007E9913 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCD681C7274A9AE7007E9913 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

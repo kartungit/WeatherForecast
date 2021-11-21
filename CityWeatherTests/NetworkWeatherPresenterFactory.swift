@@ -19,12 +19,13 @@ class NetworkWeatherPresenterFactoryTest: XCTestCase {
 									  pressure: "Pressure: 1007",
 									  humidity: "Humidity: 72%",
 									  description: "Description: moderate rain",
-									  imgUrl: "a")
+									  imgUrl: "\(BASE_IMG_SOURCE)10d@2x.png")
 		XCTAssertEqual(presentable.dayList.count, 7)
 		XCTAssertEqual(presentable.dayList.first!.date, stubDay.date)
 		XCTAssertEqual(presentable.dayList.first!.aveTemp, stubDay.aveTemp)
 		XCTAssertEqual(presentable.dayList.first!.pressure, stubDay.pressure)
 		XCTAssertEqual(presentable.dayList.first!.humidity, stubDay.humidity)
 		XCTAssertEqual(presentable.dayList.first!.description, stubDay.description)
+		XCTAssertEqual(presentable.dayList.first!.imgUrl, stubDay.imgUrl)
 	}
 }

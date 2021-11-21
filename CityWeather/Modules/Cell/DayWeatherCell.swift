@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DayWeatherCell: UITableViewCell {
 	lazy var stackView: UIStackView = {
@@ -98,6 +99,8 @@ class DayWeatherCell: UITableViewCell {
 		lbPressure.text = item.pressure
 		lbHumidity.text = item.humidity
 		lbDescription.text = item.description
+		let url = URL(string: item.imgUrl)
+		imgIcon.kf.setImage(with: url)
 	}
 	
 }

@@ -81,7 +81,6 @@ class ToastView: UIView {
 			}) { _ in
 			}
 		}
-		
 	}
 	
 	private func setupUI() {

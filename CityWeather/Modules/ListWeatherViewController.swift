@@ -77,7 +77,7 @@ class ListWeatherViewController: UIViewController {
 	
 	private func bindViewModel() {
 		guard let viewModel = viewModel else { return }
-		let textSearch = tfSearch.rx.text.orEmpty.map{$0.trimmingCharacters(in: .whitespacesAndNewlines)}.asObservable()
+		let textSearch = tfSearch.rx.text.orEmpty.map{$0.trimmingCharacters(in: .whitespacesAndNewlines)}			.debounce(RxTimeInterval.milliseconds(300), scheduler: MainScheduler.instance).asObservable()
 		
 		let input = ListWeatherViewModel.Input(searchText: textSearch)
 		
