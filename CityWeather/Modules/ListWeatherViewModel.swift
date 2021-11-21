@@ -14,7 +14,7 @@ class ListWeatherViewModel: ViewModelType {
 	}
 	
 	struct Output {
-		let toastText: Driver<String>
+		let cityCountryText: Driver<String>
 		let dayWeatherList: Driver<[DayWeatherModel]>
 		let error: Driver<APIError?>
 	}
@@ -22,7 +22,7 @@ class ListWeatherViewModel: ViewModelType {
 	static let LOCATION_NOT_VALID = "Location is not valid"
 	private let dataManager: ApiManagement
 	private let viewPresentable = PublishRelay<[DayWeatherModel]>()
-	private let outputToast = PublishRelay<String>()
+	private let outputToast = BehaviorRelay<String>(value: "Welcome, type to start")
 	private let errorTracker = PublishSubject<APIError?>()
 	private let disposeBag = DisposeBag()
 	
@@ -40,7 +40,7 @@ class ListWeatherViewModel: ViewModelType {
 					.catchError ({ [weak self] error in
 						guard let self = self,
 						let error = error as? APIError else { return .error(APIError.unknown)}
-				  self.errorTracker.onNext(error)
+							self.errorTracker.onNext(error)
 						return .just(WeatherPresentModel.errorView())
 			  })
 			}).subscribe(onNext:{[weak self] presentModel in
@@ -49,7 +49,7 @@ class ListWeatherViewModel: ViewModelType {
 				self.viewPresentable.accept(presentModel.dayList)
 			}).disposed(by: disposeBag)
 		
-		return Output(toastText: outputToast.asDriver(onErrorJustReturn: ""),
+		return Output(cityCountryText: outputToast.asDriver(onErrorJustReturn: ""),
 					  dayWeatherList: viewPresentable.asDriver(onErrorJustReturn: []),
 					  error: errorTracker.asDriver(onErrorJustReturn: nil))
 	}

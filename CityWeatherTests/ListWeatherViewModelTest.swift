@@ -28,7 +28,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		makeSUT()
 		
 		let toastTextTest = scheduler.createObserver(String.self)
-		output.toastText.drive(toastTextTest).disposed(by: disposeBag)
+		output.cityCountryText.drive(toastTextTest).disposed(by: disposeBag)
 		
 		scheduler.createColdObservable([.next(10, "a")])
 			.bind(to: searchTest$)
@@ -42,7 +42,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		makeSUT()
 		
 		let toastTextTest = scheduler.createObserver(String.self)
-		output.toastText.drive(toastTextTest).disposed(by: disposeBag)
+		output.cityCountryText.drive(toastTextTest).disposed(by: disposeBag)
 		let listDayWeather = scheduler.createObserver([DayWeatherModel].self)
 		output.dayWeatherList.drive(listDayWeather).disposed(by: disposeBag)
 
@@ -59,7 +59,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		makeSUT()
 		
 		let toastTextTest = scheduler.createObserver(String.self)
-		output.toastText.drive(toastTextTest).disposed(by: disposeBag)
+		output.cityCountryText.drive(toastTextTest).disposed(by: disposeBag)
 		
 		scheduler.createColdObservable([.next(10, "abc"),
 										.next(20, "abc")])
@@ -78,7 +78,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		let errorTest = scheduler.createObserver(APIError?.self)
 		output.error.drive(errorTest).disposed(by: disposeBag)
 		let toastTextTest = scheduler.createObserver(String.self)
-		output.toastText.drive(toastTextTest).disposed(by: disposeBag)
+		output.cityCountryText.drive(toastTextTest).disposed(by: disposeBag)
 		
 		scheduler.createColdObservable([.next(10, "abc"),
 										.next(20, "a"),

@@ -9,12 +9,12 @@ import UIKit
 
 enum ToastType {
 	case loading
+	case error(String)
 	case text(String)
 }
 
 class ToastView: UIView {
-	private var textToast: String
-	private var showToast: (Bool) -> Void
+	private var type: ToastType = .loading
 	
 	private lazy var lbText: UILabel = {
 		let label = UILabel()
@@ -31,9 +31,7 @@ class ToastView: UIView {
 		return indicator
 	}()
 	
-	required init(textToast: String, showToast: @escaping (Bool) -> Void) {
-		self.textToast = textToast
-		self.showToast = showToast
+	required init() {
 		super.init(frame: .zero)
 		setupLayout()
 		setupUI()
@@ -44,15 +42,42 @@ class ToastView: UIView {
 	}
 	
 	func present(with type: ToastType) {
+		self.type = type
 		switch type {
 			case .loading:
 				self.indicator.startAnimating()
+				toogleHideViewWithAnimation(shouldShow: true)
+			case .error(let errorText):
+				self.lbText.text = errorText
+				toogleHideViewWithAnimation(shouldShow: true)
+
 			case .text(let text):
 				self.lbText.text = text
-				toogleHideViewWithAnimation()
+				toogleHideViewWithAnimation(shouldShow: true)
+				DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {[weak self] in
+					guard let self = self,
+						  case .text = self.type else { return }
+					self.toogleHideViewWithAnimation()
+				})
 		}
 	}
-
+	
+	private func toogleHideViewWithAnimation(shouldShow: Bool = false) {
+		if shouldShow {
+			self.alpha = 0
+			self.isHidden = false
+			UIView.animate(withDuration: 1) {
+				self.alpha = 1
+			}
+		} else {
+			UIView.animate(withDuration: 1, animations: {
+				self.alpha = 0
+			}) { (finished) in
+				self.isHidden = true
+			}
+		}
+	}
+	
 	private func setupUI() {
 		self.backgroundColor = .lightGray
 		self.layer.cornerRadius = 30
@@ -69,22 +94,6 @@ class ToastView: UIView {
 		
 		indicator.snp.makeConstraints { make in
 			make.centerX.centerY.equalToSuperview()
-		}
-	}
-	
-	private func toogleHideViewWithAnimation() {
-		if self.isHidden == false {
-			UIView.animate(withDuration: 1, animations: {
-				self.alpha = 0
-			}) { (finished) in
-				self.isHidden = true
-			}
-		} else {
-			self.alpha = 0
-			self.isHidden = false
-			UIView.animate(withDuration: 1) {
-				self.alpha = 1
-			}
 		}
 	}
 }

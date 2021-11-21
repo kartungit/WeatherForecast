@@ -18,7 +18,7 @@ struct WeatherPresentModel {
 	let dayList: [DayWeatherModel]
 	
 	static func errorView() -> Self {
-		self.init(locationToastText: ListWeatherViewModel.LOCATION_NOT_VALID, dayList: [])
+		self.init(locationToastText: "", dayList: [])
 	}
 }
 

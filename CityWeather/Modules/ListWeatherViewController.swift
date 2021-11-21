@@ -21,10 +21,7 @@ class ListWeatherViewController: UIViewController {
 	}()
 	
 	private lazy var phantomToast: ToastView = {
-		let toastView = ToastView(textToast: "Welcome",
-							 showToast: { isShowing in
-								print("Toast is showing")
-							 })
+		let toastView = ToastView()
 		
 		view.addSubview(toastView)
 		return toastView
@@ -61,7 +58,20 @@ class ListWeatherViewController: UIViewController {
 		view.backgroundColor = .cyan
 	}
 	
-	func bindViewModel() {
+	func delayedHideToast(isShowing: Bool) {
+		if isShowing {
+			phantomToast.isHidden = true
+		}
+	}
+	
+	private func toastShouldHide(isShowing: Bool) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {[weak self] in
+			guard let self = self else { return }
+			self.delayedHideToast(isShowing: isShowing)
+		})
+	}
+	
+	private func bindViewModel() {
 		guard let viewModel = viewModel else { return }
 		let textSearch = tfSearch.rx.text.orEmpty.map{$0.trimmingCharacters(in: .whitespacesAndNewlines)}.asObservable()
 		
@@ -69,9 +79,17 @@ class ListWeatherViewController: UIViewController {
 		
 		let output = viewModel.transform(input)
 		
-		output.toastText.drive(onNext: {[weak self] text in
+		output.cityCountryText
+			.filter{$0.count > 0}
+			.drive(onNext: {[weak self] text in
 			guard let self = self else { return }
 			self.phantomToast.present(with: .text(text))
+		}).disposed(by: disposeBag)
+		
+		output.error.drive(onNext: {[weak self] error in
+			guard let self = self,
+				  let error = error else { return }
+			self.phantomToast.present(with: .error(error.localizedMessage))
 		}).disposed(by: disposeBag)
 	}
 
