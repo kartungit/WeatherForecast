@@ -54,33 +54,31 @@ class ToastView: UIView {
 
 			case .text(let text):
 				self.lbText.text = text
-				dispatchGroup.enter()
+				self.dispatchGroup.enter()
 				toogleHideViewWithAnimation(shouldShow: true)
 				DispatchQueue.global().asyncAfter(deadline: .now() + 2, execute: {[weak self] in
-					guard let self = self,
-						  case .text = self.type else { return }
+					guard let self = self else { return }
 					self.dispatchGroup.leave()
 				})
 		}
 		
-		self.dispatchGroup.notify(queue: .main, execute: {[weak self] in
-			guard let self = self else { return }
+		self.dispatchGroup.notify(queue: .main) {[weak self] in
+			guard let self = self,
+				  case .text = self.type else { return }
 			self.toogleHideViewWithAnimation()
-		})
+		}
 	}
 	
 	private func toogleHideViewWithAnimation(shouldShow: Bool = false) {
 		if shouldShow {
 			self.alpha = 0
-			self.isHidden = false
 			UIView.animate(withDuration: 0.5) {
 				self.alpha = 1
 			}
 		} else {
 			UIView.animate(withDuration: 0.5, animations: {
 				self.alpha = 0
-			}) { (finished) in
-				self.isHidden = true
+			}) { _ in
 			}
 		}
 		
