@@ -18,7 +18,10 @@ class ListWeatherViewController: UIViewController {
 		tableView.backgroundColor = .systemGray4
 		tableView.alwaysBounceVertical = false
 		tableView.dataSource = self
+		tableView.rowHeight = UITableView.automaticDimension
+		tableView.estimatedRowHeight = 100
 		tableView.register(DayWeatherCell.self, forCellReuseIdentifier: "ItemCell")
+		tableView.register(ListStatusCell.self, forCellReuseIdentifier: "StatusCell")
 
 		view.addSubview(tableView)
 		return tableView
@@ -55,6 +58,8 @@ class ListWeatherViewController: UIViewController {
 		view.backgroundColor = .white
 		navigationItem.title = "Weather Forecast"
 		navigationController?.navigationBar.prefersLargeTitles = false
+		navigationItem.hidesSearchBarWhenScrolling = false
+		searchController.hidesNavigationBarDuringPresentation = false
 	}
 
 	private func setupLayout() {
@@ -103,12 +108,20 @@ class ListWeatherViewController: UIViewController {
 
 extension ListWeatherViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return dayWeatherItems.count
+		return dayWeatherItems.count == 0 ? 1 : dayWeatherItems.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as? DayWeatherCell
-		cell?.updateCell(item: dayWeatherItems[indexPath.row])
-		return cell ?? UITableViewCell()
+		if dayWeatherItems.count == 0 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "StatusCell", for: indexPath) as? ListStatusCell
+			cell?.updateCell(with: .empty)
+			tableView.separatorStyle = .none
+			return cell ?? UITableViewCell()
+		} else {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as? DayWeatherCell
+			tableView.separatorStyle = .singleLine
+			cell?.updateCell(item: dayWeatherItems[indexPath.row])
+			return cell ?? UITableViewCell()
+		}
 	}
 }

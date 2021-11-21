@@ -18,7 +18,7 @@ class ToastView: UIView {
 	
 	private lazy var lbText: UILabel = {
 		let label = AccessibilityLabel()
-		
+		label.accessibilityValue = "Error message"
 		self.addSubview(label)
 		return label
 	}()
