@@ -15,7 +15,7 @@ class ListWeatherViewController: UIViewController {
 	
 	private(set) lazy var tableView: UITableView = {
 		let tableView = UITableView()
-		tableView.backgroundColor = .systemGray4
+		tableView.backgroundColor = .systemGray
 		tableView.alwaysBounceVertical = false
 		tableView.dataSource = self
 		tableView.rowHeight = UITableView.automaticDimension
