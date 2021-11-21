@@ -35,6 +35,8 @@ class ListWeatherViewModel: ViewModelType {
 	func transform(_ input: Input) -> Output {
 		input.searchText
 			.filter{$0.count >= ListWeatherViewModel.MIN_SEARCH_TEXT}
+			.debounce(RxTimeInterval.milliseconds(300), scheduler: MainScheduler.instance)
+			.distinctUntilChanged()
 			.flatMapLatest({[weak self] text -> Single<WeatherPresentModel> in
 				guard let self = self else { return .error(APIError.unknown)}
 				return self.dataManager.getCityWeather(city: text)

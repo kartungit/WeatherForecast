@@ -34,7 +34,7 @@ class ListWeatherViewController: UIViewController {
 	private lazy var phantomToast: ToastView = {
 		let toastView = ToastView()
 		
-		view.addSubview(toastView)
+		tableView.addSubview(toastView)
 		return toastView
 	}()
 	
@@ -62,15 +62,14 @@ class ListWeatherViewController: UIViewController {
 			make.height.equalTo(60)
 			make.top.equalToSuperview().inset(60)
 		}
-		
-		phantomToast.snp.makeConstraints { make in
-			make.top.equalTo(tfSearch.snp.bottom).offset(8)
-			make.leading.trailing.equalToSuperview().inset(32)
-		}
-		
 		tableView.snp.makeConstraints { make in
 			make.top.equalTo(tfSearch.snp.bottom)
 			make.leading.trailing.bottom.equalToSuperview()
+		}
+		
+		phantomToast.snp.makeConstraints { make in
+			make.top.equalToSuperview().inset(16)
+			make.leading.trailing.equalTo(self.view).inset(16)
 		}
 		
 		view.backgroundColor = .cyan
