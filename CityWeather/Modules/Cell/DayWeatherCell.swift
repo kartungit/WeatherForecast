@@ -11,7 +11,7 @@ import Kingfisher
 class DayWeatherCell: UITableViewCell {
 	lazy var stackView: UIStackView = {
 		let stackView = UIStackView()
-		stackView.spacing = 8
+		stackView.spacing = 10
 		stackView.axis = .vertical
 		
 		contentView.addSubview(stackView)

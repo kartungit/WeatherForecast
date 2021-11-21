@@ -13,17 +13,10 @@ class ListWeatherViewController: UIViewController {
 	private var viewModel: ListWeatherViewModel!
 	private let disposeBag = DisposeBag()
 	
-	private lazy var tfSearch: UITextField = {
-		let textfield = UITextField()
-		textfield.backgroundColor = .systemGray4
-		view.addSubview(textfield)
-		
-		return textfield
-	}()
-	
 	private lazy var tableView: UITableView = {
 		let tableView = UITableView()
 		tableView.backgroundColor = .systemGray4
+		tableView.alwaysBounceVertical = false
 		tableView.dataSource = self
 		tableView.register(DayWeatherCell.self, forCellReuseIdentifier: "ItemCell")
 
@@ -38,8 +31,9 @@ class ListWeatherViewController: UIViewController {
 		return toastView
 	}()
 	
+	private let searchController = UISearchController(searchResultsController: nil)
 	private var dayWeatherItems: [DayWeatherModel] = []
-	
+
 	init(viewModel: ListWeatherViewModel) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
@@ -53,31 +47,33 @@ class ListWeatherViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
 		setupLayout()
+		setupUI()
 		bindViewModel()
 	}
 	
+	private func setupUI() {
+		view.backgroundColor = .white
+		navigationItem.title = "Weather Forecast"
+		navigationController?.navigationBar.prefersLargeTitles = false
+	}
+
 	private func setupLayout() {
-		tfSearch.snp.makeConstraints { make in
-			make.leading.trailing.equalToSuperview().inset(16)
-			make.height.equalTo(60)
-			make.top.equalToSuperview().inset(60)
-		}
+		navigationItem.searchController = searchController
+
 		tableView.snp.makeConstraints { make in
-			make.top.equalTo(tfSearch.snp.bottom)
-			make.leading.trailing.bottom.equalToSuperview()
+			make.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
+			make.bottom.equalToSuperview()
 		}
 		
 		phantomToast.snp.makeConstraints { make in
 			make.top.equalToSuperview().inset(16)
 			make.leading.trailing.equalTo(self.view).inset(16)
 		}
-		
-		view.backgroundColor = .cyan
 	}
 	
 	private func bindViewModel() {
 		guard let viewModel = viewModel else { return }
-		let textSearch = tfSearch.rx.text.orEmpty.map{$0.trimmingCharacters(in: .whitespacesAndNewlines)}			.debounce(RxTimeInterval.milliseconds(300), scheduler: MainScheduler.instance).asObservable()
+		let textSearch = searchController.searchBar.rx.text.orEmpty.map{$0.trimmingCharacters(in: .whitespacesAndNewlines)}			.debounce(RxTimeInterval.milliseconds(300), scheduler: MainScheduler.instance).asObservable()
 		
 		let input = ListWeatherViewModel.Input(searchText: textSearch)
 		

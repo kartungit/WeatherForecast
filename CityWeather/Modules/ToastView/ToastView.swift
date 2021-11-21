@@ -84,7 +84,7 @@ class ToastView: UIView {
 	}
 	
 	private func setupUI() {
-		self.backgroundColor = .cyan
+		self.backgroundColor = UIColor(red: 236/225, green: 110/225, blue: 76/225, alpha: 1)
 		self.layer.cornerRadius = 30
 	}
 
