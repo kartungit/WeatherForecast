@@ -6,4 +6,4 @@
 //
 
 let BASE_API_URL = "https://api.openweathermap.org/"
-let BASE_IMG_SOURCE = "http://openweathermap.org/img/wn/"
+let BASE_IMG_SOURCE = "https://openweathermap.org/img/wn/"

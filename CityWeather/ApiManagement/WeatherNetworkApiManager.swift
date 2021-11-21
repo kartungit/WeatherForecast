@@ -14,12 +14,12 @@ struct WeatherService: TargetType {
 	let city: String
 	
 	var baseURL: URL {
-		let urlString = BASE_API_URL
+		let urlString = BASE_API_URL + "data/2.5/forecast/daily?cnt=7&appid=60c6fbeb4b93ac653c492ba806fc346d&units=metric"
 		return URL(string: urlString)!
 	}
 	
 	var path: String {
-		return "data/2.5/forecast/daily?cnt=7&appid=60c6fbeb4b93ac653c492ba806fc346d&units=metric"
+		return ""
 	}
 	
 	var method: Moya.Method {

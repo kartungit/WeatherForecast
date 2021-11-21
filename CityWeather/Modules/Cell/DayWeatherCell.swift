@@ -60,7 +60,7 @@ class DayWeatherCell: UITableViewCell {
 	
 	lazy var imgIcon: UIImageView = {
 		let image = UIImageView()
-		image.image = UIImage(named: "")
+		image.contentMode = .scaleAspectFit
 		contentView.addSubview(image)
 		
 		return image
@@ -89,7 +89,9 @@ class DayWeatherCell: UITableViewCell {
 		}
 		
 		imgIcon.snp.makeConstraints { make in
-			make.top.trailing.bottom.equalToSuperview().inset(24)
+			make.trailing.equalToSuperview().inset(24)
+			make.centerY.equalToSuperview()
+			make.height.width.equalTo(60)
 		}
 	}
 	
@@ -99,7 +101,7 @@ class DayWeatherCell: UITableViewCell {
 		lbPressure.text = item.pressure
 		lbHumidity.text = item.humidity
 		lbDescription.text = item.description
-		let url = URL(string: item.imgUrl)
+		let url = URL(string: item.imgUrl)!
 		imgIcon.kf.setImage(with: url)
 	}
 	
