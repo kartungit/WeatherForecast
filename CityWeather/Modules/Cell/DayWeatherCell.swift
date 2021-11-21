@@ -19,40 +19,35 @@ class DayWeatherCell: UITableViewCell {
 	}()
 	
 	lazy var lbDate: UILabel = {
-		let label = UILabel()
-		label.textColor = .black
+		let label = AccessibilityLabel()
 		
 		stackView.addArrangedSubview(label)
 		return label
 	}()
 	
 	lazy var lbTemp: UILabel = {
-		let label = UILabel()
-		label.textColor = .black
+		let label = AccessibilityLabel()
 		
 		stackView.addArrangedSubview(label)
 		return label
 	}()
 	
 	lazy var lbPressure: UILabel = {
-		let label = UILabel()
-		label.textColor = .black
+		let label = AccessibilityLabel()
 		
 		stackView.addArrangedSubview(label)
 		return label
 	}()
 	
 	lazy var lbHumidity: UILabel = {
-		let label = UILabel()
-		label.textColor = .black
+		let label = AccessibilityLabel()
 		
 		stackView.addArrangedSubview(label)
 		return label
 	}()
 	
 	lazy var lbDescription: UILabel = {
-		let label = UILabel()
-		label.textColor = .black
+		let label = AccessibilityLabel()
 		
 		stackView.addArrangedSubview(label)
 		return label
@@ -61,6 +56,8 @@ class DayWeatherCell: UITableViewCell {
 	lazy var imgIcon: UIImageView = {
 		let image = UIImageView()
 		image.contentMode = .scaleAspectFit
+		image.accessibilityTraits = .image
+		image.isAccessibilityElement = true
 		contentView.addSubview(image)
 		
 		return image
@@ -103,6 +100,6 @@ class DayWeatherCell: UITableViewCell {
 		lbDescription.text = item.description
 		let url = URL(string: item.imgUrl)!
 		imgIcon.kf.setImage(with: url)
+		imgIcon.accessibilityLabel = item.imageAccessibilityLable
 	}
-	
 }

@@ -35,7 +35,7 @@ class ListWeatherViewModelTest: XCTestCase {
 			.disposed(by: disposeBag)
 		
 		scheduler.start()
-		XCTAssertEqual(toastTextTest.events, [.next(0, "Welcome, type to start")])
+		XCTAssertEqual(toastTextTest.events, [])
 	}
 	
 	func test_viewModelInit_searchTwice_withInputNotChange_fetchOnce() {
@@ -52,8 +52,7 @@ class ListWeatherViewModelTest: XCTestCase {
 			.disposed(by: disposeBag)
 		
 		scheduler.start()
-		XCTAssertEqual(toastTextTest.events, [.next(0, "Welcome, type to start"),
-											  .next(10, "Ho Chi Minh City, VN")])
+		XCTAssertEqual(toastTextTest.events, [.next(10, "Ho Chi Minh City, VN")])
 		XCTAssertEqual(listDayWeather.events.count, 1)
 	}
 	
@@ -69,8 +68,7 @@ class ListWeatherViewModelTest: XCTestCase {
 			.disposed(by: disposeBag)
 		
 		scheduler.start()
-		XCTAssertEqual(toastTextTest.events, [.next(0, "Welcome, type to start"),
-											  .next(10, "Ho Chi Minh City, VN"),
+		XCTAssertEqual(toastTextTest.events, [.next(10, "Ho Chi Minh City, VN"),
 											  .next(20, "Ho Chi Minh City, VN")])
 	}
 	
@@ -92,8 +90,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		scheduler.start()
 		XCTAssertEqual(errorTest.events, [.next(10, APIError.notFound),
 										  .next(30, APIError.notFound)])
-		XCTAssertEqual(toastTextTest.events, [.next(0, "Welcome, type to start"),
-											  .next(10, ""),
+		XCTAssertEqual(toastTextTest.events, [.next(10, ""),
 											  .next(30, "")])
 	}
 	

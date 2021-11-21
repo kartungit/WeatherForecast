@@ -17,8 +17,7 @@ class ToastView: UIView {
 	private var type: ToastType = .loading
 	
 	private lazy var lbText: UILabel = {
-		let label = UILabel()
-		label.textColor = .black
+		let label = AccessibilityLabel()
 		
 		self.addSubview(label)
 		return label
@@ -86,6 +85,7 @@ class ToastView: UIView {
 	private func setupUI() {
 		self.backgroundColor = UIColor(red: 236/225, green: 110/225, blue: 76/225, alpha: 1)
 		self.layer.cornerRadius = 30
+		self.alpha = 0
 	}
 
 	private func setupLayout() {

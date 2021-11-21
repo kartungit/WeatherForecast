@@ -19,11 +19,10 @@ class ListWeatherViewModel: ViewModelType {
 		let error: Driver<APIError?>
 	}
 	static let MIN_SEARCH_TEXT = 3
-	static let LOCATION_NOT_VALID = "Location is not valid"
 	private let dataManager: ApiManagement
 	private let presenterFactory: WeatherPresenterFactory
 	private let viewPresentable = PublishRelay<[DayWeatherModel]>()
-	private let outputToast = BehaviorRelay<String>(value: "Welcome, type to start")
+	private let outputToast = PublishRelay<String>()
 	private let errorTracker = PublishSubject<APIError?>()
 	private let disposeBag = DisposeBag()
 	

@@ -27,6 +27,7 @@ struct DayWeatherModel: Equatable {
 	let humidity: String
 	let description: String
 	let imgUrl: String
+	let imageAccessibilityLable: String
 }
 
 class NetworkWeatherPresenterFactory: WeatherPresenterFactory {
@@ -49,14 +50,17 @@ class NetworkWeatherPresenterFactory: WeatherPresenterFactory {
 		let aveTempText = aveTemp(minTemp: list.temp?.min, maxTemp: list.temp?.max)
 		let pressure = "Pressure: \(String(describing: list.pressure ?? 0))"
 		let humidity = "Humidity: \(String(describing: list.humidity ?? 0))%"
-		let description = "Description: \(String(describing: list.weather?.first?.weatherDescription ?? ""))"
+		let weatherDescription = list.weather?.first?.weatherDescription ?? ""
+		let description = "Description: \(String(describing: weatherDescription))"
 		let imgUrl = "\(BASE_IMG_SOURCE)\(list.weather?.first?.icon ?? "")@2x.png"
+		let imageAccessibilityLable = weatherDescription
 		return DayWeatherModel(date: date,
 							   aveTemp: aveTempText,
 							   pressure: pressure,
 							   humidity: humidity,
 							   description: description,
-							   imgUrl: imgUrl)
+							   imgUrl: imgUrl,
+							   imageAccessibilityLable: imageAccessibilityLable)
 	}
 	
 	private func getDateFromTimeStamp(timeStamp : Int?) -> String {
