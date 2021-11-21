@@ -30,6 +30,10 @@
 		FCD681AF2748EF54007E9913 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681AE2748EF54007E9913 /* BaseViewModel.swift */; };
 		FCD681B02748EF54007E9913 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681AE2748EF54007E9913 /* BaseViewModel.swift */; };
 		FCD681B32748F6D0007E9913 /* ListWeatherViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681B12748F6D0007E9913 /* ListWeatherViewModelTest.swift */; };
+		FCD681BB2749F1F1007E9913 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681BA2749F1F1007E9913 /* ToastView.swift */; };
+		FCD681BC2749F1F1007E9913 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681BA2749F1F1007E9913 /* ToastView.swift */; };
+		FCD681BE2749F1FF007E9913 /* ToastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681BD2749F1FF007E9913 /* ToastViewModel.swift */; };
+		FCD681BF2749F1FF007E9913 /* ToastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681BD2749F1FF007E9913 /* ToastViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,8 @@
 		FCD681AA2748EF30007E9913 /* ListWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWeatherViewModel.swift; sourceTree = "<group>"; };
 		FCD681AE2748EF54007E9913 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		FCD681B12748F6D0007E9913 /* ListWeatherViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWeatherViewModelTest.swift; sourceTree = "<group>"; };
+		FCD681BA2749F1F1007E9913 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		FCD681BD2749F1FF007E9913 /* ToastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +204,7 @@
 		FCD681A92748EEF6007E9913 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				FCD681B92749EE70007E9913 /* ToastView */,
 				FC9049C22748AF5D00240C06 /* ListWeatherViewController.swift */,
 				FCD681AA2748EF30007E9913 /* ListWeatherViewModel.swift */,
 			);
@@ -210,6 +217,15 @@
 				FCD681AE2748EF54007E9913 /* BaseViewModel.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		FCD681B92749EE70007E9913 /* ToastView */ = {
+			isa = PBXGroup;
+			children = (
+				FCD681BA2749F1F1007E9913 /* ToastView.swift */,
+				FCD681BD2749F1FF007E9913 /* ToastViewModel.swift */,
+			);
+			path = ToastView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,11 +424,13 @@
 				FCD681A02748C336007E9913 /* TestResources.swift in Sources */,
 				FCD681AB2748EF30007E9913 /* ListWeatherViewModel.swift in Sources */,
 				FCD681912748B584007E9913 /* ApiManagement.swift in Sources */,
+				FCD681BB2749F1F1007E9913 /* ToastView.swift in Sources */,
 				FCD681A72748E5DB007E9913 /* ApiError.swift in Sources */,
 				FCD681AF2748EF54007E9913 /* BaseViewModel.swift in Sources */,
 				FC9049BF2748AF5D00240C06 /* AppDelegate.swift in Sources */,
 				FCD681932748B5CE007E9913 /* WeatherNetworkApiManager.swift in Sources */,
 				FCD681982748B94B007E9913 /* WeatherNetworkModel.swift in Sources */,
+				FCD681BE2749F1FF007E9913 /* ToastViewModel.swift in Sources */,
 				FCD681962748B90D007E9913 /* WeatherModel.swift in Sources */,
 				FCD681A32748C981007E9913 /* MoyaNetwork.swift in Sources */,
 				FC9049C12748AF5D00240C06 /* SceneDelegate.swift in Sources */,
@@ -423,9 +441,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCD681BC2749F1F1007E9913 /* ToastView.swift in Sources */,
 				FCD681A12748C336007E9913 /* TestResources.swift in Sources */,
 				FCD681B32748F6D0007E9913 /* ListWeatherViewModelTest.swift in Sources */,
 				FCD6819A2748C25C007E9913 /* NetworkApiManagerTest.swift in Sources */,
+				FCD681BF2749F1FF007E9913 /* ToastViewModel.swift in Sources */,
 				FCD681B02748EF54007E9913 /* BaseViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
