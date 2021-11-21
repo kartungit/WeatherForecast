@@ -13,7 +13,7 @@ class ListWeatherViewController: UIViewController {
 	private var viewModel: ListWeatherViewModel!
 	private let disposeBag = DisposeBag()
 	
-	private lazy var tableView: UITableView = {
+	private(set) lazy var tableView: UITableView = {
 		let tableView = UITableView()
 		tableView.backgroundColor = .systemGray4
 		tableView.alwaysBounceVertical = false
