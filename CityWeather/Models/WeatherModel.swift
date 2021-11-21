@@ -8,9 +8,7 @@
 import Foundation
 
 protocol WeatherPresenterFactory {
-	var locationToastText: String { get }
-	
-	func weatherPresenter() -> WeatherPresentModel
+	func weatherPresenter(model: WeatherNetworkModel) -> WeatherPresentModel
 }
 
 struct WeatherPresentModel {
@@ -31,15 +29,20 @@ struct DayWeatherModel {
 	let imgUrl: String
 }
 
-extension WeatherNetworkModel: WeatherPresenterFactory {
-	var locationToastText: String {
-		return "\(city?.name ?? ""), \(city?.country ?? "")"
-	}
-	
-	func weatherPresenter() -> WeatherPresentModel {
-		let dayList: [DayWeatherModel] = (self.list?.map{convert(list: $0)})!
+class NetworkWeatherPresenterFactory: WeatherPresenterFactory {
+		
+	func weatherPresenter(model: WeatherNetworkModel) -> WeatherPresentModel {
+		let locationToastText = "\(model.city?.name ?? ""), \(model.city?.country ?? "")"
+		
+		guard let list = model.list else {
+			return WeatherPresentModel(
+					locationToastText: locationToastText,
+					dayList: [])
+		}
+		let dayList: [DayWeatherModel] = list.map{convert(list: $0)}
 		return WeatherPresentModel(locationToastText: locationToastText, dayList: dayList)
 	}
+	
 	
 	private func convert(list: List) -> DayWeatherModel {
 		let date = "Date: \(String(describing: list.dt))"

@@ -21,13 +21,15 @@ class ListWeatherViewModel: ViewModelType {
 	static let MIN_SEARCH_TEXT = 3
 	static let LOCATION_NOT_VALID = "Location is not valid"
 	private let dataManager: ApiManagement
+	private let presenterFactory: WeatherPresenterFactory
 	private let viewPresentable = PublishRelay<[DayWeatherModel]>()
 	private let outputToast = BehaviorRelay<String>(value: "Welcome, type to start")
 	private let errorTracker = PublishSubject<APIError?>()
 	private let disposeBag = DisposeBag()
 	
-	init(dataManager: ApiManagement) {
+	init(dataManager: ApiManagement, presenterFactory: WeatherPresenterFactory) {
 		self.dataManager = dataManager
+		self.presenterFactory = presenterFactory
 	}
 	
 	func transform(_ input: Input) -> Output {
@@ -36,7 +38,9 @@ class ListWeatherViewModel: ViewModelType {
 			.flatMapLatest({[weak self] text -> Single<WeatherPresentModel> in
 				guard let self = self else { return .error(APIError.unknown)}
 				return self.dataManager.getCityWeather(city: text)
-					.map{$0.weatherPresenter()}
+					.map{[weak self] response -> WeatherPresentModel in
+						guard let self = self else { return WeatherPresentModel.errorView()}
+						return self.presenterFactory.weatherPresenter(model: response)}
 					.catchError ({ [weak self] error in
 						guard let self = self,
 						let error = error as? APIError else { return .error(APIError.unknown)}

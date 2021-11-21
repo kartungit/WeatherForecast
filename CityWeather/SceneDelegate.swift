@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		window = UIWindow(frame: windowScene.coordinateSpace.bounds)
 		window?.windowScene = windowScene
 		
-		let viewModel = ListWeatherViewModel(dataManager: WeatherNetworkApiManager<WeatherNetworkModel>())
+		let viewModel = ListWeatherViewModel(dataManager: WeatherNetworkApiManager(), presenterFactory: NetworkWeatherPresenterFactory())
 		
 		window?.rootViewController = ListWeatherViewController(viewModel: viewModel)
 		

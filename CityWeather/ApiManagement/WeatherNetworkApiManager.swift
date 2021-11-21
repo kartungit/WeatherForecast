@@ -39,11 +39,11 @@ struct WeatherService: TargetType {
 	
 }
 
-class WeatherNetworkApiManager<T: WeatherPresenterFactory & Decodable>: MoyaNetwork<WeatherService>, ApiManagement {
-	typealias WeatherRaw = T
+class WeatherNetworkApiManager: MoyaNetwork<WeatherService>, ApiManagement {
 	
-	func getCityWeather<T>(city: String) -> Single<T> where T : WeatherPresenterFactory, T : Decodable {
+	func getCityWeather(city: String) -> Single<WeatherNetworkModel> {
 		
-		return callApi(WeatherService(city: city), dataReturnType: T.self)
+		return callApi(WeatherService(city: city),
+					   dataReturnType: WeatherNetworkModel.self)
 	}
 }

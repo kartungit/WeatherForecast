@@ -34,6 +34,7 @@
 		FCD681BC2749F1F1007E9913 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681BA2749F1F1007E9913 /* ToastView.swift */; };
 		FCD681BE2749F1FF007E9913 /* ToastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681BD2749F1FF007E9913 /* ToastViewModel.swift */; };
 		FCD681BF2749F1FF007E9913 /* ToastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681BD2749F1FF007E9913 /* ToastViewModel.swift */; };
+		FCD681C2274A0D8B007E9913 /* WeatherPresenterFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681C0274A0D8B007E9913 /* WeatherPresenterFactoryTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		FCD681B12748F6D0007E9913 /* ListWeatherViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWeatherViewModelTest.swift; sourceTree = "<group>"; };
 		FCD681BA2749F1F1007E9913 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		FCD681BD2749F1FF007E9913 /* ToastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewModel.swift; sourceTree = "<group>"; };
+		FCD681C0274A0D8B007E9913 /* WeatherPresenterFactoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPresenterFactoryTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				FC9049D72748AF6100240C06 /* Info.plist */,
 				FCD681B12748F6D0007E9913 /* ListWeatherViewModelTest.swift */,
 				FCD681992748C25C007E9913 /* NetworkApiManagerTest.swift */,
+				FCD681C0274A0D8B007E9913 /* WeatherPresenterFactoryTest.swift */,
 			);
 			path = CityWeatherTests;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 			files = (
 				FCD681BC2749F1F1007E9913 /* ToastView.swift in Sources */,
 				FCD681A12748C336007E9913 /* TestResources.swift in Sources */,
+				FCD681C2274A0D8B007E9913 /* WeatherPresenterFactoryTest.swift in Sources */,
 				FCD681B32748F6D0007E9913 /* ListWeatherViewModelTest.swift in Sources */,
 				FCD6819A2748C25C007E9913 /* NetworkApiManagerTest.swift in Sources */,
 				FCD681BF2749F1FF007E9913 /* ToastViewModel.swift in Sources */,
