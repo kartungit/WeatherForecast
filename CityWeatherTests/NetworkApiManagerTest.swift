@@ -18,13 +18,13 @@ class NetworkApiManagerTest: XCTestCase {
 	var scheduler: TestScheduler!
 
 	func testMockNetworkSucess() {
-		let sut = WeatherNetworkApiManager<WeatherNetworkModel>(isMock: true)
+		let sut = WeatherNetworkApiManager(isMock: true)
 		
 		let weather = sut.getCityWeather(city: "stubFile") as Single<WeatherNetworkModel>
 		let block = weather.toBlocking()
 		
 		XCTAssertEqual(try block.toArray().count, 1)
-		XCTAssertEqual(try block.first()!.locationToastText, "Ho Chi Minh City, VN")
+		XCTAssertEqual(try block.first()!.city?.name, "Ho Chi Minh City")
 	}
 	
 	func testMockNetwork_apiNotFound_emmitErrorNotFound() {

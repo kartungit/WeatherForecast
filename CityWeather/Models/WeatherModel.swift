@@ -20,7 +20,7 @@ struct WeatherPresentModel {
 	}
 }
 
-struct DayWeatherModel {
+struct DayWeatherModel: Equatable {
 	let date: String
 	let aveTemp: String
 	let pressure: String
@@ -45,17 +45,34 @@ class NetworkWeatherPresenterFactory: WeatherPresenterFactory {
 	
 	
 	private func convert(list: List) -> DayWeatherModel {
-		let date = "Date: \(String(describing: list.dt))"
-		let aveTemp = ((list.temp?.max ?? 0) + (list.temp?.min ?? 0)) / 2
-		let aveTempText = "Average Temperature: \(String(describing: aveTemp))°C"
-		let pressure = "Pressure: \(String(describing: list.pressure))"
-		let humidity = "Humidity: \(String(describing: list.humidity))%"
-		let description = "Description: \(String(describing: list.weather?.description))"
+		let date = getDateFromTimeStamp(timeStamp: list.dt)
+		let aveTempText = aveTemp(minTemp: list.temp?.min, maxTemp: list.temp?.max)
+		let pressure = "Pressure: \(String(describing: list.pressure ?? 0))"
+		let humidity = "Humidity: \(String(describing: list.humidity ?? 0))%"
+		let description = "Description: \(String(describing: list.weather?.first?.weatherDescription ?? ""))"
 		return DayWeatherModel(date: date,
 							   aveTemp: aveTempText,
 							   pressure: pressure,
 							   humidity: humidity,
 							   description: description,
 							   imgUrl: "a")
+	}
+	
+	private func getDateFromTimeStamp(timeStamp : Int?) -> String {
+		guard let timeStamp = timeStamp else { return "N/A" }
+		let date = NSDate(timeIntervalSince1970: Double(timeStamp))
+		let formatter = DateFormatter()
+		formatter.dateFormat = "EEE, dd MMM YYYY"
+		let dateString = formatter.string(from: date as Date)
+		return "Date: \(dateString)"
+	}
+	
+	private func aveTemp(minTemp: Double?, maxTemp: Double?) -> String {
+		guard let minTemp = minTemp,
+			  let maxTemp = maxTemp else { return "N/A" }
+		let aveTemp = ((minTemp + maxTemp) / 2).rounded(.toNearestOrEven)
+		let aveTempText = "Average Temperature: \(String(describing: Int(aveTemp)))°C"
+
+		return aveTempText
 	}
 }

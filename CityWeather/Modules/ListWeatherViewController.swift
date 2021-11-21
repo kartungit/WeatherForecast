@@ -15,9 +15,20 @@ class ListWeatherViewController: UIViewController {
 	
 	private lazy var tfSearch: UITextField = {
 		let textfield = UITextField()
-		textfield.backgroundColor = .gray
+		textfield.backgroundColor = .systemGray4
 		view.addSubview(textfield)
+		
 		return textfield
+	}()
+	
+	private lazy var tableView: UITableView = {
+		let tableView = UITableView()
+		tableView.backgroundColor = .systemGray4
+		tableView.dataSource = self
+		tableView.register(DayWeatherCell.self, forCellReuseIdentifier: "ItemCell")
+
+		view.addSubview(tableView)
+		return tableView
 	}()
 	
 	private lazy var phantomToast: ToastView = {
@@ -27,6 +38,7 @@ class ListWeatherViewController: UIViewController {
 		return toastView
 	}()
 	
+	private var dayWeatherItems: [DayWeatherModel] = []
 	
 	init(viewModel: ListWeatherViewModel) {
 		self.viewModel = viewModel
@@ -55,20 +67,13 @@ class ListWeatherViewController: UIViewController {
 			make.top.equalTo(tfSearch.snp.bottom).offset(8)
 			make.leading.trailing.equalToSuperview().inset(32)
 		}
-		view.backgroundColor = .cyan
-	}
-	
-	func delayedHideToast(isShowing: Bool) {
-		if isShowing {
-			phantomToast.isHidden = true
+		
+		tableView.snp.makeConstraints { make in
+			make.top.equalTo(tfSearch.snp.bottom)
+			make.leading.trailing.bottom.equalToSuperview()
 		}
-	}
-	
-	private func toastShouldHide(isShowing: Bool) {
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {[weak self] in
-			guard let self = self else { return }
-			self.delayedHideToast(isShowing: isShowing)
-		})
+		
+		view.backgroundColor = .cyan
 	}
 	
 	private func bindViewModel() {
@@ -91,7 +96,24 @@ class ListWeatherViewController: UIViewController {
 				  let error = error else { return }
 			self.phantomToast.present(with: .error(error.localizedMessage))
 		}).disposed(by: disposeBag)
+		
+		output.dayWeatherList.drive(onNext: {[weak self] items in
+			guard let self = self else { return }
+			self.dayWeatherItems = items
+			self.tableView.reloadData()
+		}).disposed(by: disposeBag)
 	}
 
 }
 
+extension ListWeatherViewController: UITableViewDataSource {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return dayWeatherItems.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as? DayWeatherCell
+		cell?.updateCell(item: dayWeatherItems[indexPath.row])
+		return cell ?? UITableViewCell()
+	}
+}

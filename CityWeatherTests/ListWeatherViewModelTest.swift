@@ -35,7 +35,7 @@ class ListWeatherViewModelTest: XCTestCase {
 			.disposed(by: disposeBag)
 		
 		scheduler.start()
-		XCTAssertEqual(toastTextTest.events.count, 0)
+		XCTAssertEqual(toastTextTest.events, [.next(0, "Welcome, type to start")])
 	}
 	
 	func test_viewModelInit_withNetworkManager() {
@@ -51,7 +51,8 @@ class ListWeatherViewModelTest: XCTestCase {
 			.disposed(by: disposeBag)
 		
 		scheduler.start()
-		XCTAssertEqual(toastTextTest.events, [.next(10, "Ho Chi Minh City, VN")])
+		XCTAssertEqual(toastTextTest.events, [.next(0, "Welcome, type to start"),
+											  .next(10, "Ho Chi Minh City, VN")])
 		XCTAssertEqual(listDayWeather.events.count, 1)
 	}
 	
@@ -67,7 +68,8 @@ class ListWeatherViewModelTest: XCTestCase {
 			.disposed(by: disposeBag)
 		
 		scheduler.start()
-		XCTAssertEqual(toastTextTest.events, [.next(10, "Ho Chi Minh City, VN"),
+		XCTAssertEqual(toastTextTest.events, [.next(0, "Welcome, type to start"),
+											  .next(10, "Ho Chi Minh City, VN"),
 											  .next(20, "Ho Chi Minh City, VN")])
 	}
 	
@@ -89,23 +91,25 @@ class ListWeatherViewModelTest: XCTestCase {
 		scheduler.start()
 		XCTAssertEqual(errorTest.events, [.next(10, APIError.notFound),
 										  .next(30, APIError.notFound)])
-		XCTAssertEqual(toastTextTest.events, [.next(10, ListWeatherViewModel.LOCATION_NOT_VALID),
-											  .next(30, ListWeatherViewModel.LOCATION_NOT_VALID)])
+		XCTAssertEqual(toastTextTest.events, [.next(0, "Welcome, type to start"),
+											  .next(10, ""),
+											  .next(30, "")])
 	}
 	
-	private func makeSUT(stubNetwork: ApiManagement = WeatherNetworkApiManager<WeatherNetworkModel>(isMock: true)) {
+	private func makeSUT(stubNetwork: ApiManagement = WeatherNetworkApiManager(isMock: true)) {
 		let stubNetwork = stubNetwork
 		scheduler = TestScheduler(initialClock: 0)
 		disposeBag = DisposeBag()
 		
-		sut = ListWeatherViewModel(dataManager: stubNetwork)
+		sut = ListWeatherViewModel(dataManager: stubNetwork,
+								   presenterFactory: NetworkWeatherPresenterFactory())
 		input = ListWeatherViewModel.Input(searchText: searchTest$.asObservable())
 		output = sut.transform(input)
 	}
 }
 
-class StubWeatherErrorNetwork: WeatherNetworkApiManager<WeatherNetworkModel> {
-	override func getCityWeather<T>(city: String) -> Single<T> where T : WeatherPresenterFactory, T : Decodable {
+class StubWeatherErrorNetwork: WeatherNetworkApiManager {
+	override func getCityWeather(city: String) -> Single<WeatherNetworkModel>{
 		
 		let customEndpointClosure = { (target: WeatherService) -> Endpoint in
 			return Endpoint(url: URL(target: target).absoluteString,
