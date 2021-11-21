@@ -17,6 +17,7 @@
 		FC9049F02748AF9800240C06 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FC9049EF2748AF9800240C06 /* SnapKit */; };
 		FCCD322E274AB824008D6427 /* AccessibilityLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD322D274AB824008D6427 /* AccessibilityLabel.swift */; };
 		FCCD3230274ABAC0008D6427 /* ListStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD322F274ABAC0008D6427 /* ListStatusCell.swift */; };
+		FCCD3235274AC93B008D6427 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD3234274AC93B008D6427 /* WeatherService.swift */; };
 		FCD681912748B584007E9913 /* ApiManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681902748B584007E9913 /* ApiManagement.swift */; };
 		FCD681932748B5CE007E9913 /* WeatherNetworkApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681922748B5CE007E9913 /* WeatherNetworkApiManager.swift */; };
 		FCD681962748B90D007E9913 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681952748B90D007E9913 /* WeatherModel.swift */; };
@@ -71,6 +72,7 @@
 		FC9049D72748AF6100240C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCCD322D274AB824008D6427 /* AccessibilityLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityLabel.swift; sourceTree = "<group>"; };
 		FCCD322F274ABAC0008D6427 /* ListStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStatusCell.swift; sourceTree = "<group>"; };
+		FCCD3234274AC93B008D6427 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		FCD681902748B584007E9913 /* ApiManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManagement.swift; sourceTree = "<group>"; };
 		FCD681922748B5CE007E9913 /* WeatherNetworkApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkApiManager.swift; sourceTree = "<group>"; };
 		FCD681952748B90D007E9913 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
@@ -191,9 +193,18 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		FCCD3233274AC925008D6427 /* TargetService */ = {
+			isa = PBXGroup;
+			children = (
+				FCCD3234274AC93B008D6427 /* WeatherService.swift */,
+			);
+			path = TargetService;
+			sourceTree = "<group>";
+		};
 		FCD6818F2748B534007E9913 /* ApiManagement */ = {
 			isa = PBXGroup;
 			children = (
+				FCCD3233274AC925008D6427 /* TargetService */,
 				FCD681902748B584007E9913 /* ApiManagement.swift */,
 				FCD681922748B5CE007E9913 /* WeatherNetworkApiManager.swift */,
 				FCD681A22748C981007E9913 /* MoyaNetwork.swift */,
@@ -461,6 +472,7 @@
 				FCD681BB2749F1F1007E9913 /* ToastView.swift in Sources */,
 				FCD681A72748E5DB007E9913 /* ApiError.swift in Sources */,
 				FCD681AF2748EF54007E9913 /* BaseViewModel.swift in Sources */,
+				FCCD3235274AC93B008D6427 /* WeatherService.swift in Sources */,
 				FC9049BF2748AF5D00240C06 /* AppDelegate.swift in Sources */,
 				FCD681932748B5CE007E9913 /* WeatherNetworkApiManager.swift in Sources */,
 				FCCD322E274AB824008D6427 /* AccessibilityLabel.swift in Sources */,
