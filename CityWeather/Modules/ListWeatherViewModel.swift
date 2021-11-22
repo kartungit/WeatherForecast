@@ -19,12 +19,12 @@ class ListWeatherViewModel: ViewModelType {
 		let error: Driver<APIError?>
 	}
 	static let MIN_SEARCH_TEXT = 3
+	private let disposeBag = DisposeBag()
 	private let dataManager: ApiManagement
 	private let presenterFactory: WeatherPresenterFactory
 	private let viewPresentable = PublishRelay<[DayWeatherModel]>()
 	private let outputToast = PublishRelay<String>()
 	private let errorTracker = PublishSubject<APIError?>()
-	private let disposeBag = DisposeBag()
 	
 	init(dataManager: ApiManagement, presenterFactory: WeatherPresenterFactory) {
 		self.dataManager = dataManager

@@ -10,10 +10,10 @@ import SnapKit
 import RxSwift
 
 class ListWeatherViewController: UIViewController {
-	private var viewModel: ListWeatherViewModel!
 	private let disposeBag = DisposeBag()
+	private var viewModel: ListWeatherViewModel!
 	internal var outputViewModel: ListWeatherViewModel.Output!
-	
+
 	private(set) lazy var tableView: UITableView = {
 		let tableView = UITableView()
 		tableView.backgroundColor = .systemGray
@@ -37,6 +37,7 @@ class ListWeatherViewController: UIViewController {
 	
 	private let searchController = UISearchController(searchResultsController: nil)
 	private var dayWeatherItems: [DayWeatherModel] = []
+	let textSearch$ = PublishSubject<String>()
 
 	init(viewModel: ListWeatherViewModel) {
 		self.viewModel = viewModel
@@ -76,7 +77,6 @@ class ListWeatherViewController: UIViewController {
 			make.leading.trailing.equalTo(self.view).inset(16)
 		}
 	}
-	let textSearch$ = PublishSubject<String>()
 	private func bindViewModel() {
 		guard let viewModel = viewModel else { return }
 		searchController.searchBar.rx.text.orEmpty
