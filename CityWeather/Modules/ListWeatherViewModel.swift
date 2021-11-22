@@ -45,7 +45,7 @@ class ListWeatherViewModel: ViewModelType {
 						guard let self = self,
 						let error = error as? APIError else { return .error(APIError.unknown)}
 							self.errorTracker.onNext(error)
-						return .just(WeatherPresentModel.errorView())
+						return .just(self.presenterFactory.errorViewPresenter())
 			  })
 			}).subscribe(onNext:{[weak self] presentModel in
 				guard let self = self else { return }

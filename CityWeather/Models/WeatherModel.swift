@@ -8,6 +8,7 @@
 import Foundation
 
 protocol WeatherPresenterFactory {
+	func errorViewPresenter() -> WeatherPresentModel
 	func weatherPresenter(model: WeatherNetworkModel) -> WeatherPresentModel
 }
 
@@ -31,6 +32,9 @@ struct DayWeatherModel: Equatable {
 }
 
 class NetworkWeatherPresenterFactory: WeatherPresenterFactory {
+	func errorViewPresenter() -> WeatherPresentModel {
+		return WeatherPresentModel.errorView()
+	}
 		
 	func weatherPresenter(model: WeatherNetworkModel) -> WeatherPresentModel {
 		let locationToastText = "\(model.city?.name ?? ""), \(model.city?.country ?? "")"
