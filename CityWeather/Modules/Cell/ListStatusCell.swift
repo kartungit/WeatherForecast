@@ -43,7 +43,7 @@ class ListStatusCell: UITableViewCell {
 	
 	private func setupUI() {
 		self.selectionStyle = .none
-		self.backgroundColor = .systemGray4
+		self.backgroundColor = .systemGray
 	}
 	
 	private func setupLayout() {

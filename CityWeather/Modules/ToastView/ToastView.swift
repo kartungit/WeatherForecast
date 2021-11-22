@@ -24,7 +24,7 @@ class ToastView: UIView {
 	}()
 	
 	private lazy var indicator: UIActivityIndicatorView = {
-		let indicator = UIActivityIndicatorView(style: .medium)
+		let indicator = UIActivityIndicatorView(style: .gray)
 		
 		self.addSubview(indicator)
 		return indicator
