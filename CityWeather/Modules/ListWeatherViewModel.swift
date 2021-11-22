@@ -16,6 +16,7 @@ class ListWeatherViewModel: ViewModelType {
 	struct Output {
 		let cityCountryText: Driver<String>
 		let dayWeatherList: Driver<[DayWeatherModel]>
+		let isLoading: Driver<Bool>
 		let error: Driver<APIError?>
 	}
 	static let MIN_SEARCH_TEXT = 3
@@ -24,6 +25,7 @@ class ListWeatherViewModel: ViewModelType {
 	private let presenterFactory: WeatherPresenterFactory
 	private let viewPresentable = PublishRelay<[DayWeatherModel]>()
 	private let outputToast = PublishRelay<String>()
+	private let isLoading = PublishRelay<Bool>()
 	private let errorTracker = PublishSubject<APIError?>()
 	
 	init(dataManager: ApiManagement, presenterFactory: WeatherPresenterFactory) {
@@ -37,6 +39,7 @@ class ListWeatherViewModel: ViewModelType {
 			.distinctUntilChanged()
 			.flatMapLatest({[weak self] text -> Single<WeatherPresentModel> in
 				guard let self = self else { return .error(APIError.unknown)}
+				self.isLoading.accept(true)
 				return self.dataManager.getCityWeather(city: text)
 					.map{[weak self] response -> WeatherPresentModel in
 						guard let self = self else { return WeatherPresentModel.errorView()}
@@ -49,12 +52,14 @@ class ListWeatherViewModel: ViewModelType {
 			  })
 			}).subscribe(onNext:{[weak self] presentModel in
 				guard let self = self else { return }
+				self.isLoading.accept(false)
 				self.outputToast.accept(presentModel.locationToastText)
 				self.viewPresentable.accept(presentModel.dayList)
 			}).disposed(by: disposeBag)
 		
 		return Output(cityCountryText: outputToast.asDriver(onErrorJustReturn: ""),
 					  dayWeatherList: viewPresentable.asDriver(onErrorJustReturn: []),
+					  isLoading: isLoading.asDriver(onErrorJustReturn: false),
 					  error: errorTracker.asDriver(onErrorJustReturn: nil))
 	}
 }

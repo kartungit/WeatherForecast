@@ -97,12 +97,17 @@ class ListWeatherViewController: UIViewController {
 			self.phantomToast.present(with: .text(text))
 		}).disposed(by: disposeBag)
 		
+		output.isLoading.drive(onNext: {[weak self] isLoading in
+			guard let self = self else { return }
+			self.phantomToast.present(with: .loading(isLoading))
+		}).disposed(by: disposeBag)
+		
 		output.error.drive(onNext: {[weak self] error in
 			guard let self = self,
 				  let error = error else { return }
 			self.phantomToast.present(with: .error(error.localizedMessage))
 		}).disposed(by: disposeBag)
-		
+
 		output.dayWeatherList.drive(onNext: {[weak self] items in
 			guard let self = self else { return }
 			self.dayWeatherItems = items

@@ -8,13 +8,13 @@
 import UIKit
 
 enum ToastType {
-	case loading
+	case loading(Bool)
 	case error(String)
 	case text(String)
 }
 
 class ToastView: UIView {
-	private var type: ToastType = .loading
+	private var type: ToastType = .loading(false)
 	
 	private lazy var lbText: UILabel = {
 		let label = AccessibilityLabel()
@@ -25,7 +25,7 @@ class ToastView: UIView {
 	
 	private lazy var indicator: UIActivityIndicatorView = {
 		let indicator = UIActivityIndicatorView(style: .gray)
-		
+		indicator.hidesWhenStopped = true
 		self.addSubview(indicator)
 		return indicator
 	}()
@@ -44,9 +44,14 @@ class ToastView: UIView {
 	func present(with type: ToastType) {
 		self.type = type
 		switch type {
-			case .loading:
-				self.indicator.startAnimating()
-				toogleHideViewWithAnimation(shouldShow: true)
+			case .loading(let isLoading):
+				if isLoading {
+					self.indicator.startAnimating()
+					self.lbText.text = ""
+					toogleHideViewWithAnimation(shouldShow: true)
+				} else {
+					self.indicator.stopAnimating()
+				}
 			case .error(let errorText):
 				self.lbText.text = errorText
 				toogleHideViewWithAnimation(shouldShow: true)
@@ -59,13 +64,14 @@ class ToastView: UIView {
 					guard let self = self else { return }
 					self.dispatchGroup.leave()
 				})
+				
+				self.dispatchGroup.notify(queue: .main) {[weak self] in
+					guard let self = self,
+						  case .text = self.type else { return }
+					self.toogleHideViewWithAnimation()
+				}
 		}
 		
-		self.dispatchGroup.notify(queue: .main) {[weak self] in
-			guard let self = self,
-				  case .text = self.type else { return }
-			self.toogleHideViewWithAnimation()
-		}
 	}
 	
 	private func toogleHideViewWithAnimation(shouldShow: Bool = false) {
