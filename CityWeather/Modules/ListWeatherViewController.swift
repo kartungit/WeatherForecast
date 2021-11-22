@@ -12,6 +12,7 @@ import RxSwift
 class ListWeatherViewController: UIViewController {
 	private var viewModel: ListWeatherViewModel!
 	private let disposeBag = DisposeBag()
+	internal var outputViewModel: ListWeatherViewModel.Output!
 	
 	private(set) lazy var tableView: UITableView = {
 		let tableView = UITableView()
@@ -75,12 +76,17 @@ class ListWeatherViewController: UIViewController {
 			make.leading.trailing.equalTo(self.view).inset(16)
 		}
 	}
-	
+	let textSearch$ = PublishSubject<String>()
 	private func bindViewModel() {
 		guard let viewModel = viewModel else { return }
-		let textSearch = searchController.searchBar.rx.text.orEmpty.map{$0.trimmingCharacters(in: .whitespacesAndNewlines)}			.debounce(RxTimeInterval.milliseconds(300), scheduler: MainScheduler.instance).asObservable()
+		searchController.searchBar.rx.text.orEmpty
+			.map{$0.trimmingCharacters(in: .whitespacesAndNewlines)}
+			.debounce(RxTimeInterval.milliseconds(300),
+					  scheduler: MainScheduler.instance)
+			.bind(to: textSearch$)
+			.disposed(by: disposeBag)
 		
-		let input = ListWeatherViewModel.Input(searchText: textSearch)
+		let input = ListWeatherViewModel.Input(searchText: textSearch$)
 		
 		let output = viewModel.transform(input)
 		

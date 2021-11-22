@@ -175,12 +175,11 @@
 		FC9049D42748AF6100240C06 /* CityWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
+				FCCD3239274B5A96008D6427 /* ApiManagement */,
+				FCCD3238274B5A82008D6427 /* Modules */,
 				FCD6819B2748C2B0007E9913 /* MockData */,
 				FC9049D72748AF6100240C06 /* Info.plist */,
-				FCD681B12748F6D0007E9913 /* ListWeatherViewModelTest.swift */,
-				FCD681992748C25C007E9913 /* NetworkApiManagerTest.swift */,
 				FCD681C0274A0D8B007E9913 /* NetworkWeatherPresenterFactory.swift */,
-				FCCD3236274ACBAC008D6427 /* ListWeatherViewControllerTest.swift */,
 			);
 			path = CityWeatherTests;
 			sourceTree = "<group>";
@@ -199,6 +198,23 @@
 				FCCD3234274AC93B008D6427 /* WeatherService.swift */,
 			);
 			path = TargetService;
+			sourceTree = "<group>";
+		};
+		FCCD3238274B5A82008D6427 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				FCD681B12748F6D0007E9913 /* ListWeatherViewModelTest.swift */,
+				FCCD3236274ACBAC008D6427 /* ListWeatherViewControllerTest.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		FCCD3239274B5A96008D6427 /* ApiManagement */ = {
+			isa = PBXGroup;
+			children = (
+				FCD681992748C25C007E9913 /* NetworkApiManagerTest.swift */,
+			);
+			path = ApiManagement;
 			sourceTree = "<group>";
 		};
 		FCD6818F2748B534007E9913 /* ApiManagement */ = {
