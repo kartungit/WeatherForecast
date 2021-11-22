@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		 
 		 window = UIWindow(frame: UIScreen.main.bounds)
 		
-		let viewModel = ListWeatherViewModel(dataManager: WeatherNetworkApiManager(), presenterFactory: NetworkWeatherPresenterFactory())
+		let networkManager = WeatherNetworkApiManager(expireTime: ExpireTime.inSecond(10))
+		let viewModel = ListWeatherViewModel(dataManager: networkManager, presenterFactory: NetworkWeatherPresenterFactory())
 		let viewController = ListWeatherViewController(viewModel: viewModel)
 		navigationController = UINavigationController(rootViewController: viewController)
 

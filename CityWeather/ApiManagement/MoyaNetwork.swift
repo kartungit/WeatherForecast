@@ -9,11 +9,13 @@ import Foundation
 import Moya
 import RxSwift
 
-class MoyaNetwork<T: TargetType> {
+class MoyaNetwork<T: Cachable> {
 	
 	var provider: MoyaProvider<T>!
+	let expireTime: ExpireTime
 	
-	init(isMock: Bool = false) {
+	init(isMock: Bool = false, expireTime: ExpireTime = .disable) {
+		self.expireTime = expireTime
 		self.provider = MoyaProvider<T>(
 			stubClosure: isMock ? MoyaProvider.immediatelyStub : MoyaProvider.neverStub,
 			plugins: getPlugins())
@@ -30,10 +32,21 @@ class MoyaNetwork<T: TargetType> {
 		_ target: T,
 		dataReturnType: ReturnedObject.Type
 	) -> Single<ReturnedObject> {
-		return provider.rx.request(target)
-			.filterSuccesfullStatusCode()
-			.map(ReturnedObject.self, using: decoder)
-			.observeOn(MainScheduler.instance)
+		var cachableTarget = target
+		cachableTarget.expireTime = expireTime
+		
+		if let response: ReturnedObject? = cachableTarget.getCache(),
+		   let validResponse = response {
+			return .just(validResponse)
+		} else {
+			return provider.rx.request(cachableTarget)
+				.filterSuccesfullStatusCode()
+				.map(ReturnedObject.self, using: decoder)
+				.observeOn(MainScheduler.instance)
+				.do(onSuccess: { response in
+					cachableTarget.storeCache(expirable: Expirable(value: response, time: Date()))
+				})
+		}
 	}
 	
 	private func getPlugins() -> [NetworkLoggerPlugin]{

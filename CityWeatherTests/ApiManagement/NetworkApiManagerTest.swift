@@ -94,7 +94,15 @@ class StubMoyaNetwork: MoyaNetwork<stubService> {
 }
 
 
-enum stubService: TargetType {
+enum stubService: Cachable {
+	var expireTime: ExpireTime {
+		get {
+			return ExpireTime.disable
+		} set {
+			
+		}
+	}
+	
 	var baseURL: URL {
 		return URL(string: "https://api.openweathermap.org/data/2.5/forecast/")!
 	}
