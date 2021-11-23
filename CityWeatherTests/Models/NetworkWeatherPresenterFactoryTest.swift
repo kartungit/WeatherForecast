@@ -1,5 +1,5 @@
 //
-//  NetworkWeatherPresenterFactory.swift
+//  NetworkWeatherPresenterFactoryTest.swift
 //  CityWeather
 //
 //  Created by ThinhMH on 21.11.2021.
@@ -19,7 +19,7 @@ class NetworkWeatherPresenterFactoryTest: XCTestCase {
 									  pressure: "Pressure: 1007",
 									  humidity: "Humidity: 72%",
 									  description: "Description: moderate rain",
-									  imgUrl: "\(BASE_IMG_SOURCE)10d@2x.png",
+									  imgUrl: "\(AppConfig.BASE_IMG_SOURCE)10d@2x.png",
 									  imageAccessibilityLable: "moderate rain")
 		XCTAssertEqual(presentable.dayList.count, 7)
 		XCTAssertEqual(presentable.dayList.first!.date, stubDay.date)

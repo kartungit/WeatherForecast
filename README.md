@@ -7,13 +7,13 @@
 
 	- MVVM UI Pattern
 	
-	- Clean Architecture
+	- Clean Architecture with SOLID
 	
-	- Dependency Injection design pattern with AppDelegate as Composition Root
+	- Dependency Injection design pattern with Coordinator as Composition Root
 	
 ## Brief explanation for the code folder structure and the key Objective-C/Swift libraries and frameworks being used</h2>
 
-	- UI layout: [Snapkit](https://github.com/SnapKit/SnapKit)
+	- UI layout contraints: [Snapkit](https://github.com/SnapKit/SnapKit)
 	
 	- Reactive Programing: [RXSwift](https://github.com/ReactiveX/RxSwift)
 	
@@ -25,7 +25,7 @@
 	
 	- Open CityWeather.xcworkspace in XCode (Recommend MacOS 11.4, XCode 12.5.1)
 	
-	- Wait for XCode resovle Swift Package and Index project.
+	- Wait for XCode to resovle Swift Package and to Index project.
 	
 	- Run CityWeather.xcworkspace on simulator or device
 	
@@ -37,7 +37,7 @@
 - [x] 4. Write UnitTests
 - [ ] 5. Acceptance Tests
 - [x] 6. Exception handling
-- [ ] 7. Caching handling
+- [x] 7. Caching handling
 - [x] 8. Accessibility for Disability Supports:
 	a. VoiceOver: Use a screen reader.
 	b. Scaling Text: Display size and font size: To change the size of items on your

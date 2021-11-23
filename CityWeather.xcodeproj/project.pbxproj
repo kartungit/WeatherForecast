@@ -38,7 +38,7 @@
 		FCD681B02748EF54007E9913 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681AE2748EF54007E9913 /* BaseViewModel.swift */; };
 		FCD681B32748F6D0007E9913 /* ListWeatherViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681B12748F6D0007E9913 /* ListWeatherViewModelTest.swift */; };
 		FCD681BB2749F1F1007E9913 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681BA2749F1F1007E9913 /* ToastView.swift */; };
-		FCD681C2274A0D8B007E9913 /* NetworkWeatherPresenterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681C0274A0D8B007E9913 /* NetworkWeatherPresenterFactory.swift */; };
+		FCD681C2274A0D8B007E9913 /* NetworkWeatherPresenterFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681C0274A0D8B007E9913 /* NetworkWeatherPresenterFactoryTest.swift */; };
 		FCD681C5274A3203007E9913 /* DayWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681C4274A3203007E9913 /* DayWeatherCell.swift */; };
 		FCD681C9274A9AE7007E9913 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FCD681C8274A9AE7007E9913 /* Kingfisher */; };
 		FCD681CB274A9EFE007E9913 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681CA274A9EFE007E9913 /* Constant.swift */; };
@@ -95,7 +95,7 @@
 		FCD681AE2748EF54007E9913 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		FCD681B12748F6D0007E9913 /* ListWeatherViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWeatherViewModelTest.swift; sourceTree = "<group>"; };
 		FCD681BA2749F1F1007E9913 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
-		FCD681C0274A0D8B007E9913 /* NetworkWeatherPresenterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWeatherPresenterFactory.swift; sourceTree = "<group>"; };
+		FCD681C0274A0D8B007E9913 /* NetworkWeatherPresenterFactoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWeatherPresenterFactoryTest.swift; sourceTree = "<group>"; };
 		FCD681C4274A3203007E9913 /* DayWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeatherCell.swift; sourceTree = "<group>"; };
 		FCD681CA274A9EFE007E9913 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -249,7 +249,7 @@
 		FCCD3242274B5CF8008D6427 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FCD681C0274A0D8B007E9913 /* NetworkWeatherPresenterFactory.swift */,
+				FCD681C0274A0D8B007E9913 /* NetworkWeatherPresenterFactoryTest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -563,7 +563,7 @@
 				FCCD3237274ACBAC008D6427 /* ListWeatherViewControllerTest.swift in Sources */,
 				FCD681CC274A9EFE007E9913 /* Constant.swift in Sources */,
 				FCD681A12748C336007E9913 /* TestResources.swift in Sources */,
-				FCD681C2274A0D8B007E9913 /* NetworkWeatherPresenterFactory.swift in Sources */,
+				FCD681C2274A0D8B007E9913 /* NetworkWeatherPresenterFactoryTest.swift in Sources */,
 				FCD681B32748F6D0007E9913 /* ListWeatherViewModelTest.swift in Sources */,
 				FCD6819A2748C25C007E9913 /* NetworkApiManagerTest.swift in Sources */,
 				FCD681B02748EF54007E9913 /* BaseViewModel.swift in Sources */,
