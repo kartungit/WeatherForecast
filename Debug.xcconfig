@@ -1,0 +1,10 @@
+//
+//  CityWeather.xcconfig
+//  CityWeather
+//
+//  Created by ThinhMH on 23.11.2021.
+//
+
+API_APPLICATION_ID = 60c6fbeb4b93ac653c492ba806fc346d
+BASE_API_URL = https:\/\/api.openweathermap.org/
+BASE_IMG_SOURCE = https:\/\/openweathermap.org/img/wn/

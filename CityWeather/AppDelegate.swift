@@ -9,22 +9,20 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-	 var window: UIWindow?
-		var navigationController: UINavigationController?
-	 
-	 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		 
-		 window = UIWindow(frame: UIScreen.main.bounds)
+	var window: UIWindow?
+	private lazy var navigationController = UINavigationController()
+	private var coordinator: NavigationControllerCoordinator!
+	
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
-		let networkManager = WeatherNetworkApiManager(expireTime: ExpireTime.inSecond(10))
-		let viewModel = ListWeatherViewModel(dataManager: networkManager, presenterFactory: NetworkWeatherPresenterFactory())
-		let viewController = ListWeatherViewController(viewModel: viewModel)
-		navigationController = UINavigationController(rootViewController: viewController)
-
-		 window?.rootViewController = navigationController
-		 window?.makeKeyAndVisible()
-		 
-		 
-		 return true
-	 }
- }
+		window = UIWindow(frame: UIScreen.main.bounds)
+		window?.rootViewController = navigationController
+		
+		coordinator = NavigationControllerCoordinator(navigator: navigationController)
+		coordinator.home()
+		
+		window?.makeKeyAndVisible()
+		
+		return true
+	}
+}

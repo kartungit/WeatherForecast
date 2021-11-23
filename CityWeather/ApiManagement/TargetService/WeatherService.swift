@@ -12,12 +12,12 @@ struct WeatherService: TargetType, Cachable {
 	let city: String
 	
 	var baseURL: URL {
-		let urlString = BASE_API_URL + "data/2.5/forecast/daily?cnt=7&appid=60c6fbeb4b93ac653c492ba806fc346d&units=metric"
+		let urlString = AppConfig.BASE_API_URL
 		return URL(string: urlString)!
 	}
 	
 	var path: String {
-		return ""
+		return "data/2.5/forecast/daily"
 	}
 	
 	var method: Moya.Method {
@@ -29,12 +29,17 @@ struct WeatherService: TargetType, Cachable {
 	}
 	
 	var task: Task {
-		return .requestParameters(parameters: ["q": city], encoding: URLEncoding.default)
+		return .requestParameters(parameters: ["q": city,
+											   "cnt": 7,
+											   "unit": "metric",
+											   "appid": AppConfig.OPEN_WEATHER_ID],
+								  encoding: URLEncoding.default)
 	}
 	
 	var headers: [String : String]? = nil
 	
-	var expireTime: ExpireTime = ExpireTime.disable
+	var cacheManager: CacheManager = CacheManager(expireTime: .disable)
+
 }
 
 extension Cachable {
@@ -50,29 +55,13 @@ extension Cachable {
 	}
 	
 	func getCache<T: Decodable>() -> T? {
-		guard let expirable = CacheManager.shared.object(forKey: urlRequest as NSString) else { return nil }
-		
-		guard !hasExpired(time: expirable.time) else {
-			return nil
-		}
-			
-		return expirable.value as? T
-		
+		cacheManager.get(key: urlRequest)
 	}
 	
 	func storeCache(expirable: Expirable) {
 		guard urlRequest.count > 0 else { return }
 		
-		CacheManager.shared.setObject( expirable, forKey: urlRequest as NSString)
+		cacheManager.store(key: urlRequest, value: expirable)
 	}
 	
-	func hasExpired(time: Date) -> Bool {
-		switch expireTime {
-			case .disable:
-				return true
-			case .inSecond(let second):
-				let date = Date()
-				return date > time.addingTimeInterval(TimeInterval(second))
-		}
-	}
 }

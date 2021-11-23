@@ -33,7 +33,7 @@ class MoyaNetwork<T: Cachable> {
 		dataReturnType: ReturnedObject.Type
 	) -> Single<ReturnedObject> {
 		var cachableTarget = target
-		cachableTarget.expireTime = expireTime
+		cachableTarget.cacheManager = CacheManager(expireTime: expireTime)
 		
 		if let response: ReturnedObject? = cachableTarget.getCache(),
 		   let validResponse = response {

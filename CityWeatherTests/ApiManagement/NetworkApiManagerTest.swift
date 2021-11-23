@@ -94,10 +94,10 @@ class StubMoyaNetwork: MoyaNetwork<stubService> {
 }
 
 
-enum stubService: Cachable {
-	var expireTime: ExpireTime {
+enum stubService: Cachable {	
+	var cacheManager: CacheManager {
 		get {
-			return ExpireTime.disable
+			return CacheManager(expireTime: .disable)
 		} set {
 			
 		}

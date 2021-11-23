@@ -32,7 +32,7 @@ class NetworkWeatherPresenterFactory: WeatherPresenterFactory {
 		let humidity = "Humidity: \(String(describing: list.humidity ?? 0))%"
 		let weatherDescription = list.weather?.first?.weatherDescription ?? ""
 		let description = "Description: \(String(describing: weatherDescription))"
-		let imgUrl = "\(BASE_IMG_SOURCE)\(list.weather?.first?.icon ?? "")@2x.png"
+		let imgUrl = "\(AppConfig.BASE_IMG_SOURCE)\(list.weather?.first?.icon ?? "")@2x.png"
 		let imageAccessibilityLable = weatherDescription
 		return DayWeatherModel(date: date,
 							   aveTemp: aveTempText,

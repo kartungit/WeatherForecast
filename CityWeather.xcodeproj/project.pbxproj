@@ -22,6 +22,7 @@
 		FCCD323F274B5CAC008D6427 /* WeatherPresenterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD323E274B5CAC008D6427 /* WeatherPresenterFactory.swift */; };
 		FCCD3241274B5CC9008D6427 /* NetworkWeatherPresenterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD3240274B5CC9008D6427 /* NetworkWeatherPresenterFactory.swift */; };
 		FCCD3245274B8EA8008D6427 /* CacheManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD3244274B8EA8008D6427 /* CacheManagement.swift */; };
+		FCCD3249274CE5AE008D6427 /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD3248274CE5AE008D6427 /* NavigationControllerCoordinator.swift */; };
 		FCD681912748B584007E9913 /* ApiManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681902748B584007E9913 /* ApiManagement.swift */; };
 		FCD681932748B5CE007E9913 /* WeatherNetworkApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681922748B5CE007E9913 /* WeatherNetworkApiManager.swift */; };
 		FCD681982748B94B007E9913 /* WeatherNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681972748B94B007E9913 /* WeatherNetworkModel.swift */; };
@@ -80,6 +81,8 @@
 		FCCD323E274B5CAC008D6427 /* WeatherPresenterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPresenterFactory.swift; sourceTree = "<group>"; };
 		FCCD3240274B5CC9008D6427 /* NetworkWeatherPresenterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWeatherPresenterFactory.swift; sourceTree = "<group>"; };
 		FCCD3244274B8EA8008D6427 /* CacheManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManagement.swift; sourceTree = "<group>"; };
+		FCCD3246274C2BAF008D6427 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		FCCD3248274CE5AE008D6427 /* NavigationControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerCoordinator.swift; sourceTree = "<group>"; };
 		FCD681902748B584007E9913 /* ApiManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManagement.swift; sourceTree = "<group>"; };
 		FCD681922748B5CE007E9913 /* WeatherNetworkApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkApiManager.swift; sourceTree = "<group>"; };
 		FCD681972748B94B007E9913 /* WeatherNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkModel.swift; sourceTree = "<group>"; };
@@ -145,6 +148,7 @@
 		FC9049B22748AF5D00240C06 = {
 			isa = PBXGroup;
 			children = (
+				FCCD3246274C2BAF008D6427 /* Debug.xcconfig */,
 				FC9049BD2748AF5D00240C06 /* CityWeather */,
 				FC9049D42748AF6100240C06 /* CityWeatherTests */,
 				FC9049BC2748AF5D00240C06 /* Products */,
@@ -165,6 +169,7 @@
 		FC9049BD2748AF5D00240C06 /* CityWeather */ = {
 			isa = PBXGroup;
 			children = (
+				FCCD3247274CE58C008D6427 /* Coordinator */,
 				FCCD322C274AB811008D6427 /* CommonView */,
 				FCD681AD2748EF45007E9913 /* Base */,
 				FCD681A92748EEF6007E9913 /* Modules */,
@@ -255,6 +260,14 @@
 				FCCD3244274B8EA8008D6427 /* CacheManagement.swift */,
 			);
 			path = CacheManagement;
+			sourceTree = "<group>";
+		};
+		FCCD3247274CE58C008D6427 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				FCCD3248274CE5AE008D6427 /* NavigationControllerCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		FCD6818F2748B534007E9913 /* ApiManagement */ = {
@@ -522,6 +535,7 @@
 				FC9049C32748AF5D00240C06 /* ListWeatherViewController.swift in Sources */,
 				FCD681A02748C336007E9913 /* TestResources.swift in Sources */,
 				FCD681CB274A9EFE007E9913 /* Constant.swift in Sources */,
+				FCCD3249274CE5AE008D6427 /* NavigationControllerCoordinator.swift in Sources */,
 				FCD681C5274A3203007E9913 /* DayWeatherCell.swift in Sources */,
 				FCCD3230274ABAC0008D6427 /* ListStatusCell.swift in Sources */,
 				FCD681AB2748EF30007E9913 /* ListWeatherViewModel.swift in Sources */,
@@ -580,6 +594,7 @@
 /* Begin XCBuildConfiguration section */
 		FC9049E32748AF6100240C06 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCCD3246274C2BAF008D6427 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
