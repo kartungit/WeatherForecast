@@ -23,7 +23,6 @@
 		FCCD3241274B5CC9008D6427 /* NetworkWeatherPresenterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD3240274B5CC9008D6427 /* NetworkWeatherPresenterFactory.swift */; };
 		FCCD3245274B8EA8008D6427 /* CacheManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD3244274B8EA8008D6427 /* CacheManagement.swift */; };
 		FCCD3249274CE5AE008D6427 /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD3248274CE5AE008D6427 /* NavigationControllerCoordinator.swift */; };
-		FCCD3251274E1E2D008D6427 /* CityWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD3250274E1E2D008D6427 /* CityWeatherUITests.swift */; };
 		FCCD3259274E1E66008D6427 /* ListWeatherViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD3258274E1E66008D6427 /* ListWeatherViewTest.swift */; };
 		FCCD325B274EBEA5008D6427 /* UISearchBar+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD325A274EBEA4008D6427 /* UISearchBar+ext.swift */; };
 		FCD681912748B584007E9913 /* ApiManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681902748B584007E9913 /* ApiManagement.swift */; };
@@ -94,7 +93,6 @@
 		FCCD3246274C2BAF008D6427 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		FCCD3248274CE5AE008D6427 /* NavigationControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerCoordinator.swift; sourceTree = "<group>"; };
 		FCCD324E274E1E2C008D6427 /* CityWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CityWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCCD3250274E1E2D008D6427 /* CityWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherUITests.swift; sourceTree = "<group>"; };
 		FCCD3252274E1E2D008D6427 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCCD3258274E1E66008D6427 /* ListWeatherViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWeatherViewTest.swift; sourceTree = "<group>"; };
 		FCCD325A274EBEA4008D6427 /* UISearchBar+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+ext.swift"; sourceTree = "<group>"; };
@@ -298,7 +296,6 @@
 		FCCD324F274E1E2D008D6427 /* CityWeatherUITests */ = {
 			isa = PBXGroup;
 			children = (
-				FCCD3250274E1E2D008D6427 /* CityWeatherUITests.swift */,
 				FCCD3252274E1E2D008D6427 /* Info.plist */,
 				FCCD3258274E1E66008D6427 /* ListWeatherViewTest.swift */,
 			);
@@ -640,7 +637,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCCD3251274E1E2D008D6427 /* CityWeatherUITests.swift in Sources */,
 				FCCD3259274E1E66008D6427 /* ListWeatherViewTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

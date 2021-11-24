@@ -27,9 +27,10 @@ struct AccessibilityID {
 	}
 	
 	struct ListWeather {
+		static let navigationBar = "navigationBar"
 		static let searchTextField = "tfSearch"
-		static let cancelButton = "btnCancel"
 		static let dismissSearchView = "vwDismiss"
+		static let tableView = "tableView"
 		static let emptyListCell = "vwEmpty"
 		static let weatherCell = "vwWeatherCell"
 	}

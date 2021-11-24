@@ -14,7 +14,7 @@ enum ToastType {
 }
 
 class ToastView: UIView {
-	private var type: ToastType = .loading(false)
+	private var type: ToastType = .loading(true)
 	
 	private lazy var lbText: UILabel = {
 		let label = AccessibilityLabel()

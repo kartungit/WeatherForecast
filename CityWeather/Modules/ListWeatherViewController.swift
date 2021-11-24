@@ -24,7 +24,7 @@ class ListWeatherViewController: UIViewController {
 		tableView.register(DayWeatherCell.self, forCellReuseIdentifier: "ItemCell")
 		tableView.register(ListStatusCell.self, forCellReuseIdentifier: "StatusCell")
 
-		tableView.accessibilityIdentifier = "WeatherTableView"
+		tableView.accessibilityIdentifier = AccessibilityID.ListWeather.tableView
 		view.addSubview(tableView)
 		return tableView
 	}()
@@ -82,10 +82,9 @@ class ListWeatherViewController: UIViewController {
 	}
 	
 	private func setupAccessibilityIdentification() {
+		self.navigationController?.navigationBar.accessibilityIdentifier = AccessibilityID.ListWeather.navigationBar
 		searchController.isAccessibilityElement = true
-		let searchBar = searchController.searchBar
-		searchBar.delegate = self
-		searchBar.textField.accessibilityIdentifier = "SearchTextField"
+		searchController.searchBar.textField.accessibilityIdentifier = AccessibilityID.ListWeather.searchTextField
 	}
 	
 	private func bindViewModel() {
@@ -145,13 +144,5 @@ extension ListWeatherViewController: UITableViewDataSource {
 			cell?.updateCell(item: dayWeatherItems[indexPath.row])
 			return cell ?? UITableViewCell()
 		}
-	}
-}
-
-extension ListWeatherViewController: UISearchBarDelegate {
-
-	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-		let btnCancel = searchBar.cancelButton
-		btnCancel.accessibilityIdentifier = "CancelButton"
 	}
 }
