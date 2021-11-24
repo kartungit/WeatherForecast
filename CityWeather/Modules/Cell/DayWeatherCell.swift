@@ -90,6 +90,11 @@ class DayWeatherCell: UITableViewCell {
 			make.centerY.equalToSuperview()
 			make.height.width.equalTo(60)
 		}
+		setupAccessibilityIdentification()
+	}
+	
+	private func setupAccessibilityIdentification() {
+		self.accessibilityIdentifier = AccessibilityID.ListWeather.weatherCell
 	}
 	
 	func updateCell(item: DayWeatherModel) {

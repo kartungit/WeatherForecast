@@ -106,5 +106,12 @@ class ToastView: UIView {
 		indicator.snp.makeConstraints { make in
 			make.centerX.centerY.equalToSuperview()
 		}
+		setupAccessibilityIdentification()
+	}
+	
+	private func setupAccessibilityIdentification() {
+		self.accessibilityIdentifier = AccessibilityID.Common.Toast.view
+		lbText.accessibilityIdentifier = AccessibilityID.Common.Toast.label
+		indicator.accessibilityIdentifier = AccessibilityID.Common.Toast.indicator
 	}
 }

@@ -24,6 +24,7 @@ class ListWeatherViewController: UIViewController {
 		tableView.register(DayWeatherCell.self, forCellReuseIdentifier: "ItemCell")
 		tableView.register(ListStatusCell.self, forCellReuseIdentifier: "StatusCell")
 
+		tableView.accessibilityIdentifier = "WeatherTableView"
 		view.addSubview(tableView)
 		return tableView
 	}()
@@ -31,7 +32,7 @@ class ListWeatherViewController: UIViewController {
 	private lazy var phantomToast: ToastView = {
 		let toastView = ToastView()
 		
-		tableView.addSubview(toastView)
+		view.addSubview(toastView)
 		return toastView
 	}()
 	
@@ -73,10 +74,20 @@ class ListWeatherViewController: UIViewController {
 		}
 		
 		phantomToast.snp.makeConstraints { make in
-			make.top.equalToSuperview().inset(16)
-			make.leading.trailing.equalTo(self.view).inset(16)
+			make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
+			make.leading.trailing.equalToSuperview().inset(16)
 		}
+		
+		setupAccessibilityIdentification()
 	}
+	
+	private func setupAccessibilityIdentification() {
+		searchController.isAccessibilityElement = true
+		let searchBar = searchController.searchBar
+		searchBar.delegate = self
+		searchBar.textField.accessibilityIdentifier = "SearchTextField"
+	}
+	
 	private func bindViewModel() {
 		guard let viewModel = viewModel else { return }
 		searchController.searchBar.rx.text.orEmpty
@@ -134,5 +145,13 @@ extension ListWeatherViewController: UITableViewDataSource {
 			cell?.updateCell(item: dayWeatherItems[indexPath.row])
 			return cell ?? UITableViewCell()
 		}
+	}
+}
+
+extension ListWeatherViewController: UISearchBarDelegate {
+
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		let btnCancel = searchBar.cancelButton
+		btnCancel.accessibilityIdentifier = "CancelButton"
 	}
 }

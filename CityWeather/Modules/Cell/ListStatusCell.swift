@@ -51,11 +51,14 @@ class ListStatusCell: UITableViewCell {
 			make.top.bottomMargin.equalToSuperview().inset(200)
 			make.leading.trailing.equalToSuperview().inset(16)
 		}
+		setupAccessibilityIdentification()
+	}
+	
+	private func setupAccessibilityIdentification() {
+		self.accessibilityIdentifier = AccessibilityID.ListWeather.emptyListCell
 	}
 	
 	func updateCell(with type: ListStatusType) {
 		lbStatus.text = type.statusText
-		
-		
 	}
 }
