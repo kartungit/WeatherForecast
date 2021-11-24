@@ -16,3 +16,21 @@ final class AppConfig {
 	}
 }
 
+struct AccessibilityID {
+	
+	struct Common {
+		struct Toast {
+			static let view = "vwToast"
+			static let label = "lbToast"
+			static let indicator = "vwIndicator"
+		}
+	}
+	
+	struct ListWeather {
+		static let searchTextField = "tfSearch"
+		static let cancelButton = "btnCancel"
+		static let dismissSearchView = "vwDismiss"
+		static let emptyListCell = "vwEmpty"
+		static let weatherCell = "vwWeatherCell"
+	}
+}
