@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "06B07ABD-9DED-4D46-A689-800AB849DCC1",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CityWeather.xcodeproj",
+        "identifier" : "FC9049D02748AF6100240C06",
+        "name" : "CityWeatherTests"
+      }
+    }
+  ],
+  "version" : 1
+}

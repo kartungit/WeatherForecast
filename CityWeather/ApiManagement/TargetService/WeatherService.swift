@@ -12,7 +12,12 @@ struct WeatherService: TargetType, Cachable {
 	let city: String
 	
 	var baseURL: URL {
-		let urlString = AppConfig.BASE_API_URL
+		#if DEBUG
+		if let invalidUrl = ProcessInfo.processInfo.environment["baseURL"] {
+			print("THINH debug with baseURL \(invalidUrl)")
+		}
+		#endif
+		let urlString = ProcessInfo.processInfo.environment["baseURL"] ?? AppConfig.BASE_API_URL
 		return URL(string: urlString)!
 	}
 	

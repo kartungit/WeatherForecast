@@ -35,7 +35,7 @@
 - [x] 2. Design app's architecture (recommend VIPER or MVP, MVVM but not mandatory)
 - [x] 3. UI should be looks like in attachment.
 - [x] 4. Write UnitTests
-- [ ] 5. Acceptance Tests
+- [x] 5. Acceptance Tests
 - [x] 6. Exception handling
 - [x] 7. Caching handling
 - [x] 8. Accessibility for Disability Supports:

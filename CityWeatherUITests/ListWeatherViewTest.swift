@@ -18,6 +18,8 @@ class ListWeatherViewTest: XCTestCase {
 		try super.setUpWithError()
 		
 		app = XCUIApplication()
+//		app.launchArguments = ["baseURL"]
+//		app.launchEnvironment = ["baseURL":"https://api.invalidopenweathermap.org/"]
 		app.launch()
 		
 		navigationBar = app.navigationBars["navigationBar"]
@@ -85,4 +87,16 @@ class ListWeatherViewTest: XCTestCase {
 		expectation(for: NSPredicate(format: "label == \"Tokyo, JP\""), evaluatedWith: lbToast, handler: nil)
 		waitForExpectations(timeout: 4, handler: nil)
 	}
+	
+	func test_networkHandler_searchBar_typeACityName_ToastShowMessage_codeError() {
+		searchField.tap()
+		searchField.typeText("notAValidCity")
+		
+		let toastView = app.otherElements["vwToast"]
+		let lbToast = toastView.staticTexts["lbToast"]
+		XCTAssertTrue(toastView.waitForExistence(timeout: 1), "Toast was not present while searching")
+		XCTAssertTrue(lbToast.waitForExistence(timeout: 4), "Label Toast was not present while searching")
+		XCTAssertEqual(lbToast.label, "Network Error: Unknown error with code: -1003", "Wrong message when network error")
+	}
+		
 }

@@ -7,4 +7,7 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:/Users/thinhmh/Documents/Working-area/iOS/CityWeather/CityWeatherTests/MockData/CityWeather-UnitTestPlan.xctestplan">
+   </FileRef>
 </Workspace>

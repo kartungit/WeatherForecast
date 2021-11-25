@@ -1,0 +1,119 @@
+{
+  "configurations" : [
+    {
+      "id" : "6D16744D-10FA-481A-B8E4-156E4248F96B",
+      "name" : "Test Server Url Prod",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "baseURL",
+            "value" : "https:\/\/api.openweathermap.org\/"
+          }
+        ]
+      }
+    },
+    {
+      "id" : "A8AACB4C-6725-407F-B84E-683EF1AF1E51",
+      "name" : "Test Server Url Error",
+      "options" : {
+        "environmentVariableEntries" : [
+          {
+            "key" : "baseURL",
+            "value" : "https:\/\/api.invalidopenweathermap.org\/"
+          }
+        ],
+        "uiTestingScreenshotsLifetime" : "deleteOnSuccess"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:CityWeather.xcodeproj",
+          "identifier" : "FC9049BA2748AF5D00240C06",
+          "name" : "CityWeather"
+        },
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "EAAA1AD3A8A1B59AB91319EE40752C6D",
+          "name" : "Alamofire"
+        },
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "17F9141D333DA1A7BE5937F227221070",
+          "name" : "Moya"
+        },
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "812ECBE0D4A285CC1FBF3B3407CCE1FB",
+          "name" : "Pods-CityWeather"
+        },
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "A7EDE51CD6B42443FDA2B900FE07B2CD",
+          "name" : "Pods-CityWeather-CityWeatherUITests"
+        },
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "26DA2601AEBDCA943FF5C101BABEBA9C",
+          "name" : "Pods-CityWeatherTests"
+        },
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "F243B36381C0CE83CCFF789AC38F0D36",
+          "name" : "RxBlocking"
+        },
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "7AD0C6DCDC9CEC8A3C7C10C7FEE07BE6",
+          "name" : "RxCocoa"
+        },
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "4622BFEF3DC16E8BD15EEFC30D4D0084",
+          "name" : "RxRelay"
+        },
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "EA9EA43B3B503823EE36C60D9C8A865F",
+          "name" : "RxSwift"
+        },
+        {
+          "containerPath" : "container:Pods\/Pods.xcodeproj",
+          "identifier" : "C8D93C508E21FFD4EE60D335DD6C22E3",
+          "name" : "RxTest"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:CityWeather.xcodeproj",
+      "identifier" : "FC9049BA2748AF5D00240C06",
+      "name" : "CityWeather"
+    }
+  },
+  "testTargets" : [
+    {
+      "enabled" : false,
+      "target" : {
+        "containerPath" : "container:CityWeather.xcodeproj",
+        "identifier" : "FC9049D02748AF6100240C06",
+        "name" : "CityWeatherTests"
+      }
+    },
+    {
+      "selectedTests" : [
+        "ListWeatherViewTest\/test_navigationItems_andDismissView_areEnable()",
+        "ListWeatherViewTest\/test_openApp_showTextSearchAndEmptyList_withBigMessage()",
+        "ListWeatherViewTest\/test_searchBar_typeANotValidCityName_ToastShowMessage_cityNotFound()",
+        "ListWeatherViewTest\/test_searchBar_typeValidCityName_receiveValues_WeatherCellPresnted()"
+      ],
+      "target" : {
+        "containerPath" : "container:CityWeather.xcodeproj",
+        "identifier" : "FCCD324D274E1E2C008D6427",
+        "name" : "CityWeatherUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
