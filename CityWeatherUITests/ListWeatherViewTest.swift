@@ -69,7 +69,7 @@ class ListWeatherViewTest: XCTestCase {
 		let lbToast = toastView.staticTexts["lbToast"]
 		XCTAssertTrue(toastView.waitForExistence(timeout: 1), "Toast was not present while searching")
 		XCTAssertTrue(lbToast.waitForExistence(timeout: 4), "Label Toast was not present while searching")
-		XCTAssertEqual(lbToast.label, "city not found", "Wrong message when input a inValid city name")
+		XCTAssertEqual(lbToast.label, "Error response: city not found", "Wrong message when input a inValid city name")
 	}
 		
 	func test_searchBar_typeValidCityName_receiveValues_WeatherCellPresnted() {
@@ -79,14 +79,10 @@ class ListWeatherViewTest: XCTestCase {
 		let weatherCell = tableView.cells["vwWeatherCell"]
 		let toastView = app.otherElements["vwToast"]
 		let lbToast = toastView.staticTexts["lbToast"]
-		let lable1 = lbToast.label
 		XCTAssertTrue(weatherCell.waitForExistence(timeout: 4), "WeatherCell was not present after searching")
 		
 		searchField.typeText("yo")
-		let lable2 = lbToast.label
 		expectation(for: NSPredicate(format: "label == \"Tokyo, JP\""), evaluatedWith: lbToast, handler: nil)
-		waitForExpectations(timeout: 2, handler: nil)
-
-		XCTAssertNotEqual(lable1, lable2, "Toast was not updated while searching twice")
+		waitForExpectations(timeout: 4, handler: nil)
 	}
 }

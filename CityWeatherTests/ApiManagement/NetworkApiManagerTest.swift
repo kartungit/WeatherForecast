@@ -31,16 +31,15 @@ class NetworkApiManagerTest: XCTestCase {
 		let sut = StubMoyaNetwork(isMock: true)
 		var thrownError: Error?
 		
-		let weather = sut.requestWithErrorResponse(error: .notFound)
+		let weather = sut.requestWithErrorResponse(error: CodeError.notFound)
 		let block = weather.toBlocking()
 
-		let expectedError = APIError.notFound
+		let expectedError = ApiError.notFound
 
 		XCTAssertThrowsError(try block.first()) {
 					thrownError = $0
 				}
-		XCTAssertEqual(expectedError,
-					   thrownError as? APIError)
+		XCTAssertEqual(expectedError, thrownError as? ApiError)
 	}
 	
 	func testMockNetwork_networkError_emmitNetworkError() {
@@ -50,21 +49,21 @@ class NetworkApiManagerTest: XCTestCase {
 		let weather = sut.requestWithErrorNetwork()
 		let block = weather.toBlocking()
 
-		let expectedError = APIError.unknown
+		let expectedError = ApiError.noNetwork
 
 		
 		XCTAssertThrowsError(try block.first()) {
 			thrownError = $0
 				}
 		XCTAssertEqual(expectedError,
-					   thrownError as? APIError)
+					   thrownError as? ApiError)
 	}
 }
 
 
 class StubMoyaNetwork: MoyaNetwork<stubService> {
 	
-	func requestWithErrorResponse(error: APIError) -> Single<Data> {
+	func requestWithErrorResponse(error: CodeError) -> Single<Data> {
 		let customEndpointClosure = { (target: stubService) -> Endpoint in
 			return Endpoint(url: URL(target: target).absoluteString,
 							sampleResponseClosure: { .networkResponse(error.rawValue, Data()) },
@@ -74,14 +73,14 @@ class StubMoyaNetwork: MoyaNetwork<stubService> {
 		}
 
 		self.provider = MoyaProvider<stubService>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
-		
-		return callApi(.failed(error), dataReturnType: Data.self)
+		let apiError = ApiError.serverError(response: error.errorResponse)
+		return callApi(.failed(apiError), dataReturnType: Data.self)
 	}
 	
 	func requestWithErrorNetwork() -> Single<Data> {
 		let customEndpointClosure = { (target: stubService) -> Endpoint in
 			return Endpoint(url: URL(target: target).absoluteString,
-							sampleResponseClosure: { .networkError(APIError.unknown as NSError) },
+							sampleResponseClosure: { .networkError(ApiError.mockNoNetwork()) },
 							method: target.method,
 							task: target.task,
 							httpHeaderFields: target.headers)
@@ -113,7 +112,7 @@ enum stubService: Cachable {
 	
 	
 	case success
-	case failed(APIError)
+	case failed(ApiError)
 	
 	var sampleData: Data {
 		do {

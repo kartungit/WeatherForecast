@@ -76,7 +76,7 @@ class ListWeatherViewModelTest: XCTestCase {
 		let stubErrorNetwork = StubWeatherErrorNetwork(isMock: true)
 		makeSUT(stubNetwork: stubErrorNetwork)
 		
-		let errorTest = scheduler.createObserver(APIError?.self)
+		let errorTest = scheduler.createObserver(ApiError?.self)
 		output.error.drive(errorTest).disposed(by: disposeBag)
 		let toastTextTest = scheduler.createObserver(String.self)
 		output.cityCountryText.drive(toastTextTest).disposed(by: disposeBag)
@@ -88,8 +88,8 @@ class ListWeatherViewModelTest: XCTestCase {
 			.disposed(by: disposeBag)
 		
 		scheduler.start()
-		XCTAssertEqual(errorTest.events, [.next(10, APIError.notFound),
-										  .next(30, APIError.notFound)])
+		XCTAssertEqual(errorTest.events, [.next(10, ApiError.notFound),
+										  .next(30, ApiError.notFound)])
 		XCTAssertEqual(toastTextTest.events, [.next(10, ""),
 											  .next(30, "")])
 	}
@@ -111,7 +111,7 @@ class StubWeatherErrorNetwork: WeatherNetworkApiManager {
 		
 		let customEndpointClosure = { (target: WeatherService) -> Endpoint in
 			return Endpoint(url: URL(target: target).absoluteString,
-							sampleResponseClosure: { .networkResponse(APIError.notFound.rawValue, Data()) },
+							sampleResponseClosure: { .networkResponse(CodeError.notFound.rawValue, Data()) },
 							method: target.method,
 							task: target.task,
 							httpHeaderFields: target.headers)

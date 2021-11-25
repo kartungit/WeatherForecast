@@ -105,4 +105,11 @@ enum ApiError: Error {
 	var description: String {
 		return "\(title): \(message)"
 	}
+	
+	var code: Int {
+		switch self {
+			case .serverError(let response): return response.statusCode ?? -1
+			case .networkError(let code): return code
+		}
+	}
 }
