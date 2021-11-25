@@ -113,7 +113,7 @@
             reference = "container:CityWeatherUITests/CityWeather-UITestPlan.xctestplan">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:CityWeatherTests/MockData/CityWeather-UnitTestPlan.xctestplan"
+            reference = "container:CityWeatherTests/CityWeather-UnitTestPlan.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

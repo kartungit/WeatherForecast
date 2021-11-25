@@ -27,6 +27,7 @@
 		FCCD325B274EBEA5008D6427 /* UISearchBar+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD325A274EBEA4008D6427 /* UISearchBar+ext.swift */; };
 		FCCD325D274ED9E5008D6427 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD325C274ED9E5008D6427 /* ErrorResponse.swift */; };
 		FCCD3260274F8983008D6427 /* StubError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD325F274F8983008D6427 /* StubError.swift */; };
+		FCCD3264274FEC52008D6427 /* CityWeather-UnitTestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = FCCD3263274FEC51008D6427 /* CityWeather-UnitTestPlan.xctestplan */; };
 		FCD681912748B584007E9913 /* ApiManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681902748B584007E9913 /* ApiManagement.swift */; };
 		FCD681932748B5CE007E9913 /* WeatherNetworkApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681922748B5CE007E9913 /* WeatherNetworkApiManager.swift */; };
 		FCD681982748B94B007E9913 /* WeatherNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD681972748B94B007E9913 /* WeatherNetworkModel.swift */; };
@@ -101,7 +102,7 @@
 		FCCD325C274ED9E5008D6427 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		FCCD325F274F8983008D6427 /* StubError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubError.swift; sourceTree = "<group>"; };
 		FCCD3261274F9154008D6427 /* CityWeather-UITestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "CityWeather-UITestPlan.xctestplan"; sourceTree = "<group>"; };
-		FCCD3262274F929A008D6427 /* CityWeather-UnitTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = "CityWeather-UnitTestPlan.xctestplan"; path = "/Users/thinhmh/Documents/Working-area/iOS/CityWeather/CityWeatherTests/MockData/CityWeather-UnitTestPlan.xctestplan"; sourceTree = "<absolute>"; };
+		FCCD3263274FEC51008D6427 /* CityWeather-UnitTestPlan.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CityWeather-UnitTestPlan.xctestplan"; sourceTree = "<group>"; };
 		FCD681902748B584007E9913 /* ApiManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManagement.swift; sourceTree = "<group>"; };
 		FCD681922748B5CE007E9913 /* WeatherNetworkApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkApiManager.swift; sourceTree = "<group>"; };
 		FCD681972748B94B007E9913 /* WeatherNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkModel.swift; sourceTree = "<group>"; };
@@ -203,6 +204,7 @@
 				FCD681A92748EEF6007E9913 /* Modules */,
 				FCD681942748B8FE007E9913 /* Models */,
 				FCD6818F2748B534007E9913 /* ApiManagement */,
+				FCCD3265274FFD67008D6427 /* Network */,
 				FC9049BE2748AF5D00240C06 /* AppDelegate.swift */,
 				FC9049C72748AF6000240C06 /* Assets.xcassets */,
 				FC9049C92748AF6000240C06 /* LaunchScreen.storyboard */,
@@ -214,12 +216,12 @@
 		FC9049D42748AF6100240C06 /* CityWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
+				FCCD3263274FEC51008D6427 /* CityWeather-UnitTestPlan.xctestplan */,
 				FCCD325E274F8969008D6427 /* Helpers */,
 				FCCD3242274B5CF8008D6427 /* Models */,
 				FCCD3239274B5A96008D6427 /* ApiManagement */,
 				FCCD3238274B5A82008D6427 /* Modules */,
 				FCD6819B2748C2B0007E9913 /* MockData */,
-				FCCD3262274F929A008D6427 /* CityWeather-UnitTestPlan.xctestplan */,
 				FC9049D72748AF6100240C06 /* Info.plist */,
 			);
 			path = CityWeatherTests;
@@ -319,16 +321,23 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		FCD6818F2748B534007E9913 /* ApiManagement */ = {
+		FCCD3265274FFD67008D6427 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				FCCD3243274B8E92008D6427 /* CacheManagement */,
-				FCCD3233274AC925008D6427 /* TargetService */,
-				FCD681902748B584007E9913 /* ApiManagement.swift */,
-				FCD681922748B5CE007E9913 /* WeatherNetworkApiManager.swift */,
 				FCD681A22748C981007E9913 /* MoyaNetwork.swift */,
 				FCD681A62748E5DB007E9913 /* ApiError.swift */,
 				FCCD325C274ED9E5008D6427 /* ErrorResponse.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FCD6818F2748B534007E9913 /* ApiManagement */ = {
+			isa = PBXGroup;
+			children = (
+				FCCD3233274AC925008D6427 /* TargetService */,
+				FCD681902748B584007E9913 /* ApiManagement.swift */,
+				FCD681922748B5CE007E9913 /* WeatherNetworkApiManager.swift */,
 			);
 			path = ApiManagement;
 			sourceTree = "<group>";
@@ -513,6 +522,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCCD3264274FEC52008D6427 /* CityWeather-UnitTestPlan.xctestplan in Resources */,
 				FCD6819E2748C2DA007E9913 /* SaigonWeather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

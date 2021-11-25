@@ -13,9 +13,32 @@
 	
 ## Brief explanation for the code folder structure and the key Objective-C/Swift libraries and frameworks being used</h2>
 
+- CityWeather
+	- Coordinator - Composition Root define flow in app.
+	- CommonView - Some custom UI for convenient using
+	- Base - Base things using project wide ( type for ViewModel, Constant )
+	- Modules - Mainly part that handle UI render, accept user interact.
+	- Models
+		- Presentable - Protocol factory to generate view's presentable instance, concrete implementation for ListWeatherView
+		- Network - Scaffold object to fetch data from network
+	- ApiManagement
+		- TargetService - Target to create object that determined request network 
+		- ApiManagent - Functionally data desire in application
+		- WeatherNetworkApiManager - Concrete implementation *ApiManagent* for specific fetch data from OpenWeather API ( inheritance from *MoyaNetwork* )
+	- Network
+		- CacheManagement - Simple Cache which help *MoyaNetwork* reduce redundancy request in a period of time	
+		- MoyaNetwork - Base class for execution of inherited useCase
+		- ApiError + ErrorResponse - Simplify network and response error from server
+- CityWeatherTests - Unit Test for logic part with RXTest, Stub network, Mock data
+- CityWeatherUITests - UI Test cases: initial, search emtpy, network error, search successful.
+
+- Project is supported from excellent and trusted libraries: 
+
 	- UI layout contraints: [Snapkit](https://github.com/SnapKit/SnapKit)
 	
 	- Reactive Programing: [RXSwift](https://github.com/ReactiveX/RxSwift)
+	
+	- Network Request: [Moya](https://github.com/Moya/Moya)
 	
 	- Image loader: [Kingfisher](https://github.com/onevcat/Kingfisher)
 	
