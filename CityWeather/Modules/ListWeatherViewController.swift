@@ -115,7 +115,7 @@ class ListWeatherViewController: UIViewController {
 		output.error.drive(onNext: {[weak self] error in
 			guard let self = self,
 				  let error = error else { return }
-			self.phantomToast.present(with: .error(error.localizedMessage))
+			self.phantomToast.present(with: .error(error.description))
 		}).disposed(by: disposeBag)
 
 		output.dayWeatherList.drive(onNext: {[weak self] items in

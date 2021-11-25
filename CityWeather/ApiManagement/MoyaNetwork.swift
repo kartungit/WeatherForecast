@@ -69,14 +69,15 @@ class MoyaNetwork<T: Cachable> {
 
 extension PrimitiveSequence where Trait == SingleTrait, Element: Moya.Response {
 	func filterSuccesfullStatusCode() -> Single<Element> {
-		return self.catchError{ _ in return .error(APIError.unknown)}
+		let validator = ApiErrorManagement()
+
+		return self.catchError{ error in return .error(validator.parseError(error: error))}
 			.flatMap({ response in
-			let validator = ApiErrorManagement()
-			let reponseStatus = validator.checkResponse(response)
-			switch reponseStatus {
+			let responseStatus = validator.checkResponse(response)
+			switch responseStatus {
 				case .success: return .just(response)
-				default: return .error(reponseStatus)
+				default: return .error(ApiError.serverError(response: responseStatus.errorResponse))
 			}
-		})
+			})
 	}
 }

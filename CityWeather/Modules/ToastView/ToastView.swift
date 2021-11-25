@@ -18,8 +18,11 @@ class ToastView: UIView {
 	
 	private lazy var lbText: UILabel = {
 		let label = AccessibilityLabel()
+		label.textAlignment = .center
+		label.numberOfLines = 0
 		label.accessibilityValue = "Error message"
 		self.addSubview(label)
+		
 		return label
 	}()
 	
@@ -29,6 +32,7 @@ class ToastView: UIView {
 		self.addSubview(indicator)
 		return indicator
 	}()
+	
 	let dispatchGroup = DispatchGroup()
 	
 	required init() {
@@ -95,11 +99,9 @@ class ToastView: UIView {
 	}
 
 	private func setupLayout() {
-		self.snp.makeConstraints { make in
-			make.height.equalTo(60)
-		}
 		
 		lbText.snp.makeConstraints { make in
+			make.leading.top.trailing.bottom.equalToSuperview().inset(24)
 			make.centerX.centerY.equalToSuperview()
 		}
 		
